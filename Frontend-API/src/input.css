@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: Arial;
+}
+
+:root {
+    --cor1: #EBDBC2;
+    --cor2: #BEB8AE;
+    --cor3: #F3EADC;
+    --preto: #0D1419;
+    --marrom: #3F3A37;
+  }
+
+.nav-header{
+    background-color: var(--cor3);
+   
+}
+.section{
+    background-color: var(--cor2);
+}
+.b-text{
+    color: var(--preto);
+}
+.background-escuro{
+    background-color: var(--preto);
+}
+.botao{
+    background-color: transparent;
+    color: #0D1419;
+    border: solid;
+    border-color: var(--preto);
+    transition: 0.3s;
+}
+.botao:hover{
+    background-color: var(--preto);
+    color: var(--cor3);
+    border: solid;
+    border-color: var(--preto);
+}
