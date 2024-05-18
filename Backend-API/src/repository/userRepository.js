@@ -2,19 +2,28 @@ import openDb from "../database/configDB.js";
 
 class UserRepository {
     async createUser(user) {
+        return openDb().then(db => {
+            return db.run(
+                `
+                INSERT INTO USER(name, email, password)
+                VALUES(?, ?, ?)
+                `,
+                [user.name, user.email, user.password]
+            );
+        }).catch(err => { throw new Error("Erro na criação de usuário") });
+    };
+
+    async updateUser(userId, newData) {
         openDb().then(db => {
             db.exec(
                 `
-                INSERT INTO USER(name, email, password)
-                    VALUES(
-                        '${user.name}',
-                        '${user.email}',
-                        '${user.password}'
-                    );
-                `
+                UPDATE user
+                SET name = '${newData.name}', email = '${newData.email}'
+                WHERE id = '${userId}';
+                ` // password -> newDara.password
             );
-        }).catch(err => {throw new Error("Erro na criação de usuário")});
-    };
+        })
+    }
 
     async updateUserName(userId, userData) {
         openDb().then(db => {
@@ -60,10 +69,10 @@ class UserRepository {
         });
     };
 
-    async deleteUser(userId){
-        return openDb().then(db =>{
+    async deleteUser(userId) {
+        return openDb().then(db => {
             db.exec(
-                `DELETE FROM USER WHERE user.id = ${userId}` 
+                `DELETE FROM USER WHERE user.id = ${userId}`
             );
         });
     };

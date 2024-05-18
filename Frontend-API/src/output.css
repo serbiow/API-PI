@@ -600,3 +600,26 @@ video {
   border: solid;
   border-color: var(--preto);
 }
+
+.cards{
+  background-color: var(--cor1);
+}
+
+.borda-agend{
+  border-bottom: #3F3A37;
+  border-style: solid;
+  border-width: 0.3px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.border-agendamentos{
+  border-left: solid;
+  border-width: 0.3px;
+  border-color: #3F3A37;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding-left: 10px;
+}

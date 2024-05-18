@@ -13,15 +13,20 @@ class AuthController {
 
     async login(req, res) {
         const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Dados inválidos' });
+        }
+
         const user = await this.UserRepository.findUserByEmail(email);
 
         if (!user) {
-            return res.status(404).json({ message: "Usuário ou senha inválida" })
+            return res.status(404).json({ message: "Usuário não encontrado" })
         };
 
         bcrypt.compare(password, user.password, (err, result) => {
             if (result) {
-                const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
+                const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
                 res.json({ token });
             } else {
                 res.status(400).send('Credenciais inválidas.');
@@ -33,33 +38,17 @@ class AuthController {
         const { name, email, password } = req.body;
 
         if (!name || !email || !password) {
-            res.status(402).json({ message: 'Dados inválidos' });
-        };
+            return res.status(400).json({ message: 'Dados inválidos' });
+        }
 
-        bcrypt.genSalt(SALT_ROUNDS).then(salt => {
-            const user = new User(name, email, password);
-            bcrypt.hash(user.password, salt).then(hash => {
-                user.password = hash;
-                user.staff = 0;
-                return this.UserRepository.createUser(user);
-            }).then(newUser => {
-                res.json(newUser);
-            });
-        }).catch(err => res.json({ status: 500, err }));
-    };
-
-    async authenticateJWT(req, res, next) {
-        const token = req.header('Authorization')?.split(' ')[1];
-        if (token) {
-            jwt.verify(token, SECRET_KEY, (err, user) => {
-                if (err) {
-                    return res.sendStatus(403);
-                }
-                req.user = user;
-                next();
-            });
-        } else {
-            res.sendStatus(401);
+        try {
+            const salt = await bcrypt.genSalt(SALT_ROUNDS);
+            const hashedPassword = await bcrypt.hash(password, salt);
+            const user = new User(name, email, hashedPassword);
+            const newUser = await this.UserRepository.createUser(user);
+            res.status(201).json({ message: 'Usuário criado com sucesso', user: newUser });
+        } catch (err) {
+            res.status(500).json({ message: 'Erro ao criar usuário', error: err.message });
         }
     };
 
@@ -71,7 +60,17 @@ class AuthController {
             return res.status(404).json({ message: 'Usuário não encontrado' });
         };
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" })
+        const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+    };
+
+    async profile(req, res) {
+        const userId = req.user.id;
+        try {
+            const user = await this.UserRepository.findUserById(userId);
+            res.json({ id: user.id, name: user.name, email: user.email });
+        } catch (err) {
+            res.status(500).json({ message: 'Erro ao obter perfil', error: err.message });
+        }
     };
 };
 

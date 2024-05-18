@@ -2,12 +2,21 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
+import path from 'path';
 import userRouter from './src/router/userRouter.js';
 import authRouter from './src/router/authRouter.js';
 import shceduleRouter from './src/router/scheduleRouter.js';
+import authenticateJWT from './src/middleware/authenticateJWT.js';
+import UserRepository from './src/repository/userRepository.js';
+import { fileURLToPath } from 'url';
 
 import Config from './config.js';
 const config = new Config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const userRepository = new UserRepository();
 
 config.pre_fligth_check();
 const app = express();
@@ -17,12 +26,16 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Configurar para servir arquivos estáticos do front-end
+app.use(express.static(path.join(__dirname, '../../Frontend-API/src')));
+
 app.use(express.json());
 app.use(cors());
 
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
 app.use('/schedule', shceduleRouter);
+
 // app.user((req, res, next) => {
 //     //Todo: Filtrar requisições permitidas
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -33,37 +46,52 @@ app.use('/schedule', shceduleRouter);
 
 //Populate Database
 
+app.use(express.static(path.join(__dirname, '../../Frontend-API/src')));
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../Frontend-API/src/login.html'));
 });
 
-// Middleware para verificar o token JWT
-const authenticateJWT = (req, res, next) => {
-    const token = req.header('Authorization')?.split(' ')[1];
-    if (token) {
-        jwt.verify(token, 'your_secret_key', (err, user) => {
-            if (err) {
-                return res.sendStatus(403);
-            }
-            req.user = user;
-            next();
-        });
-    } else {
-        res.sendStatus(401);
-    }
-};
-
-// Rota protegida de exemplo
+// Rota protegida para servir a tela de perfil
 app.get('/perfil', authenticateJWT, (req, res) => {
-    res.send('Este é um endpoint protegido.');
+    res.sendFile(path.join(__dirname, '../../Frontend-API/src/perfil.html'));
 });
 
 //Teste
 app.get('/api', (req, res) => {
     res.status(200).json({ message: "Api funcionando" })
 })
+
+// TIRAR DAQUI DEPOIS
+// rota para deletar usuário
+app.delete('/user/delete', authenticateJWT, async (req, res) => {
+    try {
+        const userId = req.user.id; // ou qualquer outra forma de obter o ID do usuário logado
+        await userRepository.deleteUser(userId);
+        res.json({ message: 'Usuário deletado com sucesso' });
+    } catch (error) {
+        console.error('Erro:', error);
+        res.status(500).json({ message: 'Erro ao deletar usuário' });
+    }
+});
+
+// TIRAR DAQUI DEPOIS
+// rota para atualizar usuário
+app.put('/user/update', authenticateJWT, async (req, res) => {
+    try {
+        const userId = req.user.id; // ou qualquer outra forma de obter o ID do usuário logado
+        const { name, email } = req.body; // passwordd
+        
+        // Aqui você faz a lógica para atualizar os dados do usuário no banco de dados
+        await userRepository.updateUser(userId, { name, email }); // password
+
+        res.json({ message: 'Dados do usuário atualizados com sucesso' });
+    } catch (error) {
+        console.error('Erro:', error);
+        res.status(500).json({ message: 'Erro ao atualizar dados do usuário' });
+    }
+});
 
 //Port - Listen
 app.listen(port, (err) => {
