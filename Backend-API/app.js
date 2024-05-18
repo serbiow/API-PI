@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
 
 import path from 'path';
 import userRouter from './src/router/userRouter.js';
@@ -15,6 +16,7 @@ const config = new Config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const JWT_SECRET = "C3swDTsQgTUnlRTM/J66J6OvNBj08iMIKPY6Egaih/r1k97TMhpdI29fRWFJLpZEHP2oGUyLLqA7gY8d"
 
 const userRepository = new UserRepository();
 
@@ -81,12 +83,25 @@ app.delete('/user/delete', authenticateJWT, async (req, res) => {
 app.put('/user/update', authenticateJWT, async (req, res) => {
     try {
         const userId = req.user.id; // ou qualquer outra forma de obter o ID do usuário logado
-        const { name, email } = req.body; // passwordd
-        
-        // Aqui você faz a lógica para atualizar os dados do usuário no banco de dados
-        await userRepository.updateUser(userId, { name, email }); // password
+        const { name, email } = req.body; // password
 
-        res.json({ message: 'Dados do usuário atualizados com sucesso' });
+        // pegar informações antigas no usuários
+        const oldUserData = await userRepository.findUserById(userId);
+
+        // atualizar as informações antigas, ou continuar com elas
+        const updateUserData = {
+            name: name || oldUserData.name,
+            email: email || oldUserData.email,
+            //password
+        };
+
+        // aqui você faz a lógica para atualizar os dados do usuário no banco de dados
+        await userRepository.updateUser(userId, updateUserData); // password
+
+        // gerar novo token
+        const newToken = jwt.sign({id: userId, name: updateUserData.name, email: updateUserData.email}, JWT_SECRET, { expiresIn: '1h' });
+
+        res.json({ message: 'Dados do usuário atualizados com sucesso', token: newToken });
     } catch (error) {
         console.error('Erro:', error);
         res.status(500).json({ message: 'Erro ao atualizar dados do usuário' });

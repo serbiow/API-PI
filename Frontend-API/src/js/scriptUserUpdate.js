@@ -22,11 +22,12 @@ document.getElementById('updateUserForm').addEventListener('submit', async (even
             body: JSON.stringify({ name, email }) //password
         });
 
+        const data = await response.json();
+
         if (response.ok) {
             alert('Dados do usuário atualizados com sucesso');
-            // Adicione aqui qualquer lógica adicional desejada, como redirecionamento ou atualização da interface.
+            localStorage.setItem('token', data.token)
         } else {
-            const data = await response.json();
             alert(data.message || 'Falha ao atualizar dados do usuário');
         }
     } catch (error) {

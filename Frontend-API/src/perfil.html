@@ -27,19 +27,22 @@
 <body>
     <main class=" w-screen h-screen flex justify-center nav-header text-gray-700">
         <h2 class="relative right-96 pt-5">Sair</h2>
-        <section class="mt-80 w-fit p-14 h-fit cards flex rounded-xl pr-10 pl-10 bg-clip-border shadow-md">
+        <section class="mt-32 w-fit p-14 h-fit cards flex rounded-xl pr-10 pl-10 bg-clip-border shadow-md">
             <div class="text-base flex-row text-center justify-center pr-5">
                 <img src="img/icone.png"
                     class="w-36 rounded-full border mb-4 border-gray-700 flex ml-auto mr-auto h-36 ">
                 <form id="updateUserForm">
-                    <input type="text" id="name" name="name" required class="bg-transparent">
+                    <input type="text" id="name" name="name" required class="bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <br>
-                    <input type="email" id="email" name="email" required class="bg-transparent">
+                    <input type="email" id="email" name="email" required class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <button class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit ">
                         <p class="pt-1">Alterar</p> <img src="img/lapis_icone.png" class="w-5  mt-1 ml-1 h-5">
-                    </button>
+                    </butto
                 </form>
-                <button id="deleteUserBtn" class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit ">
+                <button id="signOutBtn" class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
+                    <p class="pt-1">Sair</p>
+                </button>
+                <button id="deleteUserBtn" class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
                     <p class="pt-1">Deletar</p>
                 </button>
             </div>
@@ -120,6 +123,7 @@
 
     <!-- <button id="deleteUserBtn">Deletar Usuário</button> -->
 
+    <script src="js/scriptSignOut.js"></script>
     <script src="js/scriptPerfil.js"></script>
     <script src="js/scriptUserDelete.js"></script>
     <script src="js/scriptUserUpdate.js"></script>
