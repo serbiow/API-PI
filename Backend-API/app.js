@@ -22,11 +22,11 @@ app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/user', authenticateJWT, userRouter);
-app.use('/schedule', authenticateJWT,shceduleRouter);
-app.use('/service', authenticateJWT ,serviceRouter)
+app.use('/schedule', authenticateJWT, shceduleRouter);
+app.use('/service', authenticateJWT, serviceRouter)
 
 app.get('/api', (req, res) => {
-    res.status().json({message: "Api Rodando"})
+    res.status().json({ message: "Api Rodando" })
 });
 
 app.listen(port, (err) => {

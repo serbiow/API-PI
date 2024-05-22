@@ -22,26 +22,34 @@ class UserController {
 
     async updateUser(req, res) {
         const { name, email } = req.body;
-        this.userRepository.findUserById(req.user.id).then((user) => {
-            console.log(user)
-            this.userRepository.updateUser(req.user.id, {
+        try {
+            // Busque o usuário atual
+            const user = await this.userRepository.findUserById(req.user.id);
+
+            // Atualize o usuário com os novos dados ou mantenha os antigos
+            await this.userRepository.updateUser(req.user.id, {
                 name: name || user.name,
                 email: email || user.email,
-            }).then(() => {
-                this.userRepository.findUserById(req.user.id).then(newUserData => {
-                    encode({
-                        id: req.user.id,
-                        name: newUserData.name,
-                        email: newUserData.email,
-                    }).then((token) => {
-                        res.json({token, message: "Dados do usuário atualizados com sucesso"});
-                    });
-                })
             });
-        }).catch((err) => {
+
+            // Obtenha os novos dados do usuário
+            const newUserData = await this.userRepository.findUserById(req.user.id);
+
+            // Gere um novo token JWT com os dados atualizados do usuário
+            const token = await encode({
+                id: req.user.id,
+                name: name || newUserData.name,
+                email: email || newUserData.email,
+            });
+
+            // Retorne o novo token e uma mensagem de sucesso
+            res.json({ token, message: "Dados do usuário atualizados com sucesso" });
+        } catch (err) {
+            // Em caso de erro, retorne uma mensagem apropriada
             res.status(402).json({ message: "Erro ao atualizar dados do usuário" });
-        });
+        }
     }
+
 
     async updateUserPassword(req, res) {
         const { password } = req.body;
