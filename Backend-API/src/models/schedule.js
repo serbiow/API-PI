@@ -1,7 +1,7 @@
 class Schedule{
-    constructor( serviceId, data, userId){
-        this.service = serviceId;
-        this.data = data;
+    constructor(serviceId, date, userId){
+        this.serviceId = serviceId;
+        this.date = date;
         this.userId = userId;
     };
 };

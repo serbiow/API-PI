@@ -1,5 +1,5 @@
 //import serviceSeeds from '../../assets/services.json';
-import Database from '../database.js';
+import openDb from "../configDB.js";
 const serviceSeeds = [
     /*
     {
@@ -12,20 +12,21 @@ const serviceSeeds = [
 ]
 
 export function populate(){
-    const database = new Database().connection;
 
     serviceSeeds.forEach(seed => {
-        database.exec(
-            `
-            INSERT INTO SERVICES (name, description, price, duration)
-                VALUES(
-                    '${seed.name}',
-                    '${seed.description}',
-                    '${seed.price}',
-                    '${seed.duration}'
-                );
-            `
-        );
+        openDb().then(db => {
+            db.exec(
+                `
+                INSERT INTO SERVICES (name, description, price, duration)
+                    VALUES(
+                        '${seed.name}',
+                        '${seed.description}',
+                        '${seed.price}',
+                        '${seed.duration}'
+                    );
+                `
+            );
+        })
     });
 };
 

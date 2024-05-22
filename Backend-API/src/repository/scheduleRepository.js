@@ -1,66 +1,90 @@
 import openDb from "../database/configDB.js";
 
-//Transformar em Classe e criar a controller
-
 class ScheduleRepository {
-    async createSchedule(schedule) {
-        openDb().then(db => {
-            db.exec(
-                `
-                INSERT INTO SCHEDULE(service_id, data, userId)
-                    VALUES(
-                        "${schedule.service}",
-                        "${schedule.data}",
-                        "${schedule.userId}"
-                    );
-                `
-            );
-        });
-    };
+  async createSchedule(schedule) {
+    openDb().then((db) => {
+      db.exec(
+        `
+          INSERT INTO SCHEDULE(serviceId, date, userId)
+          VALUES(
+              "${schedule.serviceId}",
+              "${schedule.date}",
+              "${schedule.userId}"
+          );
+      `
+      ).then((res) => res).catch(err => { throw new Error("Erro na criação de agendamento") });
+    });
+  }
 
-    async updateScheduleData(scheduleId, userId, newData) {
-        openDb().then(db => {
-            db.exec(
-                `
-                UPDATE schedule
-                SET data = "${newData}"
-                WHERE id = "${scheduleId}" 
-                AND (userId = "${userId}" 
-                OR (SELECT staff FROM USER WHERE id = "${userId}") = 1)
-                `
-            );
-        });
-    };
+  async updateScheduleDate(scheduleId, userId, newDate) {
+    openDb().then((db) => {
+      db.exec(
+        `
+            UPDATE schedule
+            SET date = "${newDate}"
+            WHERE id = "${scheduleId}" 
+            AND (userId = "${userId}" 
+            OR (SELECT staff FROM USER WHERE id = "${userId}") = 1)
+        `
+      ).catch(err => { throw new Error("Erro ao atualizar dados de agendamento") });
+    });
+  }
 
-    async findById(scheduleId) {
-        return openDb().then(db => {
-            return db.get(
-                `SELECT * FROM SCHEDULE WHERE schedule.id = ${scheduleId}`
-            ).then(res => res);
-        });
-    };
+  async findById(scheduleId) {
+    return openDb().then((db) => {
+      return db
+        .get(
+        `
+          SELECT 
+          s.id, s.date, s.userId, s.serviceId, 
+          se.name AS serviceName, se.price, se.description, se.duration,
+          u.name AS userName, u.email 
+          FROM SCHEDULE AS s 
+          JOIN USER AS u ON u.id = s.userId
+          JOIN SERVICES AS se ON se.id = s.serviceId
+          WHERE s.id = ${scheduleId}
+        `
+      )
+        .then((res) => res).catch(err => { throw new Error("Agendamento não encotrado")});
+    });
+  }
 
-    async findByUserId(userId) {
-        return openDb().then(db => {
-            return db.all(
-                `SELECT * FROM SCHEDULE WHERE userId = ${userId}`
-            ).then(res => res);
-        });
-    };
+  async findByUserId(userId) {
+    return openDb().then((db) => {
+      return db
+        .get(`SELECT * FROM SCHEDULE WHERE userId = ${userId}`)
+        .then((res) => res);
+    }).catch(err => { throw new Error("Agendamento não encotrado")});
+  }
 
-    async deleteSchedule(scheduleId){
-        openDb().then(db =>{
-            db.exec(
-                `DELETE FROM SCHEDULE schedule.id = ${scheduleId}`
-            );
-        });
-    };
-    
+  async listAllSchedules(userId) {
+    return openDb().then((db) => {
+      return db
+        .all(
+          `
+          SELECT s.id, s.date, s.userId, s.serviceId, se.name AS serviceName, u.name AS userName, u.email FROM SCHEDULE AS s 
+          JOIN USER AS u ON u.id = s.userId
+          JOIN SERVICES AS se ON se.id = s.serviceId
+          WHERE userId = '${userId}'
+          OR (SELECT staff FROM USER WHERE id = "${userId}") = 1
 
+          `)
+        .then((res) => res).catch(err => { throw new Error("Nenhum agendameto disponível")});
+    });
+  }
 
+  async deleteSchedule(scheduleId, userId) {
+    openDb().then((db) => {
+      db.exec(
+        `
+          DELETE FROM SCHEDULE 
+          WHERE id = "${scheduleId}" 
+          AND (userId = "${userId}" 
+          OR (SELECT staff FROM USER WHERE id = "${userId}") = 1)
+          `
+      ).catch(err => { throw new Error("Erro ao realizar operação")});
+    });
+  };
 };
 
 export default ScheduleRepository;
-
-
-

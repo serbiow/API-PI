@@ -1,82 +1,74 @@
-import UserRepository from '../repository/userRepository.js'
-import User from '../models/user.js';
-import bcrypt from 'bcrypt'
-
-//Falta o método de exclusão
+import UserRepository from "../repository/userRepository.js";
+import { encrypt } from "../utils/bcrypt.js";
+import { encode } from "../utils/jwt.js";
 
 class UserController {
     constructor() {
-        this.UserRepository = new UserRepository();
-    };
+        this.userRepository = new UserRepository();
+    }
 
-    async deleteUser(req, res){
-        
-        const id = req.params.id;
-        const user = await this.UserRepository.findUserById(id);
+    async getUserById(req, res) {
+        this.userRepository.findUserById(req.user.id).then((user) => {
+            res.json({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                staff: user.staff,
+            });
+        }).catch((err) => {
+            res.status(404).json({ message: "Usuário não encontrado" });
+        });
+    }
 
-        if (user) {
-           this.UserRepository.deleteUser(id).then(()=>{
-            res.status(204).json({message: "Usuário Removido"});
-           }).catch(err=>{res.status(500).json({message: "Operação não realizada", err})});
-        };
-
-    };
-
-    async updateUserName(req, res) {
-        const { id } = req.params;
-
-        const user = await this.UserRepository.findUserById(id);
-
-        if (!user) {
-            res.status(404).json({ message: "Usuário não encontrado" })
-        };
-
-        user.name = req.body.name || user.name;
-
-        const updateUserName = await this.UserRepository.updateUserName(id, user);
-        res.json(updateUserName);
-    };
-
+    async updateUser(req, res) {
+        const { name, email } = req.body;
+        this.userRepository.findUserById(req.user.id).then((user) => {
+            console.log(user)
+            this.userRepository.updateUser(req.user.id, {
+                name: name || user.name,
+                email: email || user.email,
+            }).then(() => {
+                this.userRepository.findUserById(req.user.id).then(newUserData => {
+                    encode({
+                        id: req.user.id,
+                        name: newUserData.name,
+                        email: newUserData.email,
+                    }).then((token) => {
+                        res.json({token, message: "Dados do usuário atualizados com sucesso"});
+                    });
+                })
+            });
+        }).catch((err) => {
+            res.status(402).json({ message: "Erro ao atualizar dados do usuário" });
+        });
+    }
 
     async updateUserPassword(req, res) {
-        const { id } = req.params;
         const { password } = req.body;
 
         if (!password) {
-            return res.status(400).json({ message: "A senha é Obrigatória" })
-        };
+            return res.status(400).json({ message: "A senha é Obrigatória" });
+        }
 
-        const user = await this.UserRepository.findUserById(id);
-
-        user.password = await bcrypt.hash(password, 12);
-
-        const updateUserName = await this.UserRepository.updateUserName(id, user);
-        res.json(updateUserName);
+        this.userRepository.findUserById(req.user.id).then(user => {
+            encrypt(password).then(hashedPassword => {
+                this.userRepository.updateUserPassword(user.id, hashedPassword).then(() => {
+                    res.status(204);
+                });
+            });
+        });
     };
 
-    async getUserById(req, res) {
-        const { id } = req.params
-        const user = await this.UserRepository.findUserById(id)
-
-        if (!user) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
-        };
-
-        res.json({id:user.id, name:user.name, email:user.email, staff:user.staff});
-        
+    //TODO: Refatorar deleteUser para deactivateUser
+    async deleteUser(req, res) {
+        this.userRepository.findUserById(req.user.id).then(user => {
+            this.userRepository.deleteUser(user.id).then(() => {
+                res.status(200).json({ message: "Usuário Removido" });
+            })
+        }).catch((err) => {
+            res.status(402).json({ message: "Operação não realizada", err });
+        });
     };
-
-    async getUserByEmail(req, res) {
-        const { email } = req.params
-        const user = await this.UserRepository.findUserByEmail(email)
-
-        if (!user) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
-        };
-
-        res.json({id:user.id, name:user.name, email:user.email, staff:user.staff});
-    };
-
 };
 
 export default UserController;
