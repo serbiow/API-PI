@@ -7,7 +7,9 @@ class ScheduleController {
   }
 
   async createSchedule(req, res) {
-    const { serviceId, date } = req.body;
+    console.log('chamou')
+    const { serviceId, date, time } = req.body;
+    console.log(serviceId, date, time);
     const schedule = new Schedule(serviceId, date, req.user.id);
     if (!schedule.serviceId || !schedule.date || !schedule.userId) {
       return res.status(400).json({ message: "Dados Invalidos" });
@@ -52,10 +54,10 @@ class ScheduleController {
     const scheduleId = req.query.id;
     this.scheduleRepository.findById(scheduleId).then(schedule => {
       this.scheduleRepository.deleteSchedule(scheduleId, req.user.id).then(() => {
-          res.status(200).json({ message: "Agendamento Removido" });
-        }).catch((err) => {
-          res.status(402).json({ message: "Operação não realizada", err });
-        });
+        res.status(200).json({ message: "Agendamento Removido" });
+      }).catch((err) => {
+        res.status(402).json({ message: "Operação não realizada", err });
+      });
     });
   };
 };

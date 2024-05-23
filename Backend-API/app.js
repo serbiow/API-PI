@@ -6,7 +6,7 @@ import authenticateJWT from './src/middleware/authenticateJWT.js';
 
 import userRouter from './src/router/userRouter.js';
 import authRouter from './src/router/authRouter.js';
-import shceduleRouter from './src/router/scheduleRouter.js';
+import scheduleRouter from './src/router/scheduleRouter.js';
 import serviceRouter from './src/router/serviceRouter.js';
 
 import Config from './config.js';
@@ -22,7 +22,7 @@ app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/user', authenticateJWT, userRouter);
-app.use('/schedule', authenticateJWT, shceduleRouter);
+app.use('/schedule', authenticateJWT, scheduleRouter);
 app.use('/service', authenticateJWT, serviceRouter)
 
 app.get('/api', (req, res) => {

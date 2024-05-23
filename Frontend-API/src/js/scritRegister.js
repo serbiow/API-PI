@@ -15,6 +15,11 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
 
   let hasError = false;
 
+  // Função para validar a senha
+  function isValidPassword(password) {
+
+  }
+
   // Verificar se as senhas são iguais
   if (password !== confirmPassword) {
     document.getElementById('confirmPasswordError').textContent = 'As senhas não correspondem.';
@@ -61,10 +66,9 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
     }
 
     const data = await response.json();
-    document.getElementById('successMessage').textContent = 'Cadastro bem-sucedido! Redirecionando para login...';
-    setTimeout(() => {
-      window.location.href = './login.html';
-    }, 2000); // redirecionar após 2 segundos
+    alert('Cadastro bem-sucedido!')
+    window.location.href = './login.html';
+
   } catch (error) {
     console.error('Erro:', error);
     document.getElementById('formError').textContent = error.message || 'Erro ao fazer cadastro';

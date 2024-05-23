@@ -34,6 +34,7 @@ export function CreateTable() {
               (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
                   date TEXT NOT NULL,
+                  time TEXT NOT NULL,
                   userId INTEGER NOT NULL,
                   serviceId INTEGER NOT NULL,
                   FOREIGN KEY(userId) REFERENCES USER(id),
