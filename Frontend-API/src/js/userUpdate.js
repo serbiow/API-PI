@@ -10,6 +10,7 @@ document.getElementById('updateUserForm').addEventListener('submit', async (even
 
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
     //const password = document.getElementById('password').value;
 
     try {
@@ -19,7 +20,7 @@ document.getElementById('updateUserForm').addEventListener('submit', async (even
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ name, email }) //password
+            body: JSON.stringify({ name, email, phone }) //password
         });
 
         const data = await response.json();

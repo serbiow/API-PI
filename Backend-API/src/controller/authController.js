@@ -19,7 +19,7 @@ class AuthController {
       .then((user) => {
         verify(password, user.password, (err, result) => {
           if (result) {
-            encode({ id: user.id, name: user.name, email: user.email }).then(
+            encode({ id: user.id, name: user.name, email: user.email, phone: user.phone }).then(
               (token) => {
                 res.json({ token });
               }
@@ -35,9 +35,9 @@ class AuthController {
   }
 
   async register(req, res) {
-    const { name, email, password } = req.body;
+    const { name, email, phone, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !phone || !password) {
       return res.status(400).json({ message: "Dados inválidos" });
     }
 
@@ -59,7 +59,7 @@ class AuthController {
 
     try {
       const hashedPassword = await encrypt(password);
-      const user = new User(name, email, hashedPassword);
+      const user = new User(name, email, phone, hashedPassword);
       const newUser = await this.userRepository.createUser(user);
       res
         .status(201)

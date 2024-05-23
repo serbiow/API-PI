@@ -34,6 +34,8 @@
                     <input type="text" id="name" name="name" required class="bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <br>
                     <input type="email" id="email" name="email" required class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
+                    <br>
+                    <input type="tel" id="phone" name="phone" required class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <button class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit " type="submit">
                         <p class="pt-1">Alterar</p> <img src="img/lapis_icone.png" class="w-5  mt-1 ml-1 h-5">
                     </button
@@ -50,7 +52,7 @@
             <div class="relative  flex flex-col text-gray-700   w-96  bg-clip-border">
                 <div class="pl-4 borda-agend py-4">Agendamentos</div>
                 <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
-                    <div role="button"
+                    <!-- <div role="button"
                         class="flex items-center w-full p-3 py-1 pl-4 pr-1 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                         Brow Lamination <p class="ml-auto">18/05 15h30</p>
                         <div class="grid ml-auto place-items-center justify-self-end">
@@ -103,29 +105,22 @@
                                 </span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
+
+
+                    <!--Dentro dessa DIV vai vim todos os agendamentos, eles estão na tela ./js/scheduleList.js-->
+                    <div id="scheduleListContainer" class="flex flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700"></div>
                 </nav>
             </div>
 
         </section>
     </main>
 
-    <!-- <form id="updateUserForm">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password">
-        <button type="submit">Atualizar Dados</button>
-    </form> -->
-
-    <!-- <button id="deleteUserBtn">Deletar Usuário</button> -->
-
-    <script src="js/scriptSignOut.js"></script>
-    <script src="js/scriptPerfil.js"></script>
-    <script src="js/scriptUserDelete.js"></script>
-    <script src="js/scriptUserUpdate.js"></script>
+    <script src="js/signOut.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/userDelete.js"></script>
+    <script src="js/userUpdate.js"></script>
+    <script src="js/scheduleList.js"></script>
 </body>
 
 </html>

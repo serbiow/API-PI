@@ -7,11 +7,9 @@ class ScheduleController {
   }
 
   async createSchedule(req, res) {
-    console.log('chamou')
     const { serviceId, date, time } = req.body;
-    console.log(serviceId, date, time);
-    const schedule = new Schedule(serviceId, date, req.user.id);
-    if (!schedule.serviceId || !schedule.date || !schedule.userId) {
+    const schedule = new Schedule(serviceId, date, time, req.user.id);
+    if (!schedule.serviceId || !schedule.date || !schedule.time || !schedule.userId) {
       return res.status(400).json({ message: "Dados Invalidos" });
     }
 
@@ -23,9 +21,9 @@ class ScheduleController {
   }
 
   async updateScheduleDate(req, res) {
-    const { scheduleId, newDate } = req.body;
+    const { scheduleId, newDate, newTime } = req.body;
     this.scheduleRepository.findById(scheduleId).then(schedule => {
-      this.scheduleRepository.updateScheduleData(scheduleId, req.user.id, newDate).then(() => {
+      this.scheduleRepository.updateScheduleData(scheduleId, req.user.id, newDate, newTime).then(() => {
         res.status(204);
       });
     }).catch(err => {

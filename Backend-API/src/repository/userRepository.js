@@ -6,10 +6,10 @@ class UserRepository {
       .then((db) => {
         return db.run(
           `
-                INSERT INTO USER(name, email, password)
-                VALUES(?, ?, ?)
+                INSERT INTO USER(name, email, phone, password)
+                VALUES(?, ?, ?, ?)
                 `,
-          [user.name, user.email, user.password]
+          [user.name, user.email, user.phone, user.password]
         );
       })
       .catch((err) => {
@@ -23,7 +23,7 @@ class UserRepository {
         db.exec(
           `
                 UPDATE user
-                SET name = '${newData.name}', email = '${newData.email}'
+                SET name = '${newData.name}', email = '${newData.email}', phone = '${newData.phone}'
                 WHERE id = '${userId}';
                 `
         );
@@ -80,6 +80,8 @@ class UserRepository {
         throw new Error("Usuário não encontrado");
       });
   }
+
+  //TODO: findUserByPhone
 
   async deleteUser(userId) {
     return openDb()

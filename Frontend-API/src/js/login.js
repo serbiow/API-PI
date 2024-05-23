@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
       localStorage.setItem('token', data.token);
       alert('Login bem-sucedido!');
       // Redirecionar para uma página protegida, se necessário
-      window.location.href = './perfil.html';
+      window.location.href = './profile.html';
     } else {
       alert(data.message || 'Falha no login');
     }

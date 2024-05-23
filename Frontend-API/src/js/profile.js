@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const userData = await response.json();
             document.getElementById('name').value = userData.name;
             document.getElementById('email').value = userData.email;
+            document.getElementById('phone').value = userData.phone;
             //document.getElementById('password').value = '';
         } else {
             alert('Sessão inválida. Faça login novamente.');
@@ -28,3 +29,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         alert('Erro ao acessar o perfil');
     }
 });
+
+// const maskPhone = (value) => {
+//     return value
+//         .replace(/\D/g, "")
+//         .replace(/(\d{2})(\d)/, "($1) $2")
+//         .replace(/(\d{5})(\d)/, "$1-$2")
+//         .replace(/(-\d{4})(\d+?)$/, "$1");
+// };
+
+// document.getElementById('phone').onchange((e) => setPhone(maskPhone(e.target.value)))

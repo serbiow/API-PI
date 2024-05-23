@@ -13,6 +13,7 @@ class UserController {
                 id: user.id,
                 name: user.name,
                 email: user.email,
+                phone: user.phone,
                 staff: user.staff,
             });
         }).catch((err) => {
@@ -21,7 +22,7 @@ class UserController {
     }
 
     async updateUser(req, res) {
-        const { name, email } = req.body;
+        const { name, email, phone } = req.body;
         try {
             // Busque o usuário atual
             const user = await this.userRepository.findUserById(req.user.id);
@@ -30,6 +31,7 @@ class UserController {
             await this.userRepository.updateUser(req.user.id, {
                 name: name || user.name,
                 email: email || user.email,
+                phone: phone || user.phone,
             });
 
             // Obtenha os novos dados do usuário
@@ -40,6 +42,7 @@ class UserController {
                 id: req.user.id,
                 name: name || newUserData.name,
                 email: email || newUserData.email,
+                phone: phone || newUserData.phone,
             });
 
             // Retorne o novo token e uma mensagem de sucesso

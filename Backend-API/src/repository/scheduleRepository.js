@@ -5,10 +5,11 @@ class ScheduleRepository {
     openDb().then((db) => {
       db.exec(
         `
-          INSERT INTO SCHEDULE(serviceId, date, userId)
+          INSERT INTO SCHEDULE(serviceId, date, time, userId)
           VALUES(
               "${schedule.serviceId}",
               "${schedule.date}",
+              "${schedule.time}",
               "${schedule.userId}"
           );
       `
@@ -16,12 +17,12 @@ class ScheduleRepository {
     });
   }
 
-  async updateScheduleDate(scheduleId, userId, newDate) {
+  async updateScheduleDate(scheduleId, userId, newDate, newTime) {
     openDb().then((db) => {
       db.exec(
         `
             UPDATE schedule
-            SET date = "${newDate}"
+            SET date = "${newDate}", time = "${newTime}"
             WHERE id = "${scheduleId}" 
             AND (userId = "${userId}" 
             OR (SELECT staff FROM USER WHERE id = "${userId}") = 1)
@@ -62,7 +63,7 @@ class ScheduleRepository {
       return db
         .all(
           `
-          SELECT s.id, s.date, s.userId, s.serviceId, se.name AS serviceName, u.name AS userName, u.email FROM SCHEDULE AS s 
+          SELECT s.id, s.date, s.time, s.userId, s.serviceId, se.name AS serviceName, u.name AS userName, u.email FROM SCHEDULE AS s 
           JOIN USER AS u ON u.id = s.userId
           JOIN SERVICES AS se ON se.id = s.serviceId
           WHERE userId = '${userId}'
