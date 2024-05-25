@@ -1,5 +1,7 @@
 import User from "../models/user.js";
+import secQuestions from "../models/secQuestions.js"
 import UserRepository from "../repository/userRepository.js";
+import QuestionsRepository from "../repository/QuestionsRepository.js";
 import { encrypt, verify } from "../utils/bcrypt.js";
 import { encode } from "../utils/jwt.js";
 import nodemailer from 'nodemailer';
@@ -71,9 +73,10 @@ class AuthController {
 
   //Criar perguntas de segurança
   async createSecurityQuestions(req, res) {
+    console.log('chamou')
     const { question1, question2, question3, answer1, answer2, answer3 } = req.body;
 
-    if (!answer1 || !asnwer2 || !asnwer3 || !question1 || !question2 || !question3) {
+    if (!question1 || !question2 || !question3 || !answer1 || !answer2 || !answer3) {
       return res.status(400).json({ message: "Dados inválidos" });
     }
 
@@ -82,16 +85,27 @@ class AuthController {
       const hashedAnswer2 = await encrypt(answer2);
       const hashedAnswer3 = await encrypt(answer3);
 
-      //const securityQuestions = new ;
-      //const newUser = await this.userRepository.createUser(user);
+      const secQuestion = new secQuestions();
+      secQuestion.question1 = question1;
+      secQuestion.question2 = question2;
+      secQuestion.question3 = question3;
 
-      //tratar
+      secQuestion.answer1 = hashedAnswer1;
+      secQuestion.answer2 = hashedAnswer2;
+      secQuestion.answer3 = hashedAnswer3;
+
+      secQuestion.userId = req.user.id;
+
+      console.log(secQuestion.userId);
+
+      const newQuestions = await this.QuestionsRepository.createSecurityQuestions(secQuestion);
+
       res
         .status(201)
-        .json({ message: "Usuário criado com sucesso", user: newUser });
+        .json({ message: "Perguntas de segurança criadas com sucesso", secQuestion: newQuestions });
     } catch (err) {
-      //tratar
-      res.status(500).json({ message: "Erro ao criar usuário", err });
+      console.log(err)
+      res.status(500).json({ message: "Erro ao criar perguntas de segurança", err });
     }
   }
 

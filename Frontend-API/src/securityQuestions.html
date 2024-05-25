@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form id="formSecity">
+    <form id="formSecurity">
         <label for="pergunta">Escolha uma pergunta de segurança:</label>
         <br>
         <select id="question1" name="pergunta">
@@ -24,7 +24,7 @@
             <option value="cor_favorita">Qual sua cor favorita?</option>
         </select>
         <br>
-        <input type="text">
+        <input type="text" id="answer1">
 
         <br><br>
 
@@ -43,7 +43,7 @@
             <option value="cor_favorita">Qual sua cor favorita?</option>
         </select>
         <br>
-        <input type="text">
+        <input type="text" id="answer2">
 
         <br><br>
 
@@ -62,8 +62,14 @@
             <option value="cor_favorita">Qual sua cor favorita?</option>
         </select>
         <br>
-        <input type="text">
+        <input type="text" id="answer3">
+        
+        <br><br>
+        
+        <input type="submit">
     </form>
+
+    <script src="js/securityQuestions.js"></script>
 </body>
 
 </html>
