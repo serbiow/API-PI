@@ -43,5 +43,18 @@ export function CreateTable() {
               );
               `
     );
+
+    db.exec(
+      `
+              CREATE TABLE IF NOT EXISTS SECURITY_QUESTIONS
+              (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  question TEXT NOT NULL,
+                  answer TEXT NOT NULL,
+                  userId INTEGER NOT NULL,
+                  FOREIGN KEY(userId) REFERENCES USER(id)
+              );
+              `
+    );
   });
 }

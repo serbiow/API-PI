@@ -69,6 +69,32 @@ class AuthController {
     }
   }
 
+  //Criar perguntas de segurança
+  async createSecurityQuestions(req, res) {
+    const { question1, question2, question3, answer1, answer2, answer3 } = req.body;
+
+    if (!answer1 || !asnwer2 || !asnwer3 || !question1 || !question2 || !question3) {
+      return res.status(400).json({ message: "Dados inválidos" });
+    }
+
+    try {
+      const hashedAnswer1 = await encrypt(answer1);
+      const hashedAnswer2 = await encrypt(answer2);
+      const hashedAnswer3 = await encrypt(answer3);
+
+      //const securityQuestions = new ;
+      //const newUser = await this.userRepository.createUser(user);
+
+      //tratar
+      res
+        .status(201)
+        .json({ message: "Usuário criado com sucesso", user: newUser });
+    } catch (err) {
+      //tratar
+      res.status(500).json({ message: "Erro ao criar usuário", err });
+    }
+  }
+
   //TODO: Fazer o recoverPassword funcionar
   async recoverPassword(req, res) {
     const { email } = req.body;
