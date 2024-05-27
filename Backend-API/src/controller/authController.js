@@ -1,7 +1,7 @@
 import User from "../models/user.js";
-import secQuestions from "../models/secQuestions.js"
+import SecQuestions from "../models/secQuestions.js"
 import UserRepository from "../repository/userRepository.js";
-import QuestionsRepository from "../repository/QuestionsRepository.js";
+import SecQuestionsRepository from "../repository/secQuestionsRepository.js";
 import { encrypt, verify } from "../utils/bcrypt.js";
 import { encode } from "../utils/jwt.js";
 import nodemailer from 'nodemailer';
@@ -11,6 +11,7 @@ import crypto from 'crypto';
 class AuthController {
   constructor() {
     this.userRepository = new UserRepository();
+    this.secQuestionsRepository = new SecQuestionsRepository();
   }
 
   async login(req, res) {
@@ -72,8 +73,8 @@ class AuthController {
   }
 
   //Criar perguntas de segurança
-  async createSecurityQuestions(req, res) {
-    console.log('chamou')
+  async createSecQuestions(req, res) {
+    console.log(req.user)
     const { question1, question2, question3, answer1, answer2, answer3 } = req.body;
 
     if (!question1 || !question2 || !question3 || !answer1 || !answer2 || !answer3) {
@@ -85,7 +86,7 @@ class AuthController {
       const hashedAnswer2 = await encrypt(answer2);
       const hashedAnswer3 = await encrypt(answer3);
 
-      const secQuestion = new secQuestions();
+      const secQuestion = new SecQuestions();
       secQuestion.question1 = question1;
       secQuestion.question2 = question2;
       secQuestion.question3 = question3;
@@ -98,7 +99,7 @@ class AuthController {
 
       console.log(secQuestion.userId);
 
-      const newQuestions = await this.QuestionsRepository.createSecurityQuestions(secQuestion);
+      const newQuestions = await this.secQuestionsRepository.createSecQuestions(secQuestion);
 
       res
         .status(201)

@@ -1,4 +1,4 @@
-class secQuestions{
+class SecQuestions{
     constructor(question1, question2, question3, answer1, answer2, answer3, userId){
         this.question1 = question1;
         this.question2 = question2;
@@ -12,4 +12,4 @@ class secQuestions{
     };
 };
 
-export default secQuestions;
+export default SecQuestions;

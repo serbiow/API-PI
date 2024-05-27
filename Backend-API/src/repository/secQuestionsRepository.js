@@ -1,7 +1,7 @@
 import openDb from "../database/configDB.js";
 
 class QuestionsRepository {
-  async createSecurityQuestions(secQuestion) {
+  async createSecQuestions(secQuestion) {
     return openDb()
       .then((db) => {
         return db.run(
