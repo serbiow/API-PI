@@ -1,4 +1,4 @@
-import SecQuestionsController from '../controller/secQuestionsController';
+import SecQuestionsController from '../controller/secQuestionsController.js';
 import express from 'express';
 
 const secQuestionsRouter = express.Router();
