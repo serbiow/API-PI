@@ -1,7 +1,5 @@
 import User from "../models/user.js";
-import SecQuestions from "../models/secQuestions.js"
 import UserRepository from "../repository/userRepository.js";
-import SecQuestionsRepository from "../repository/secQuestionsRepository.js";
 import { encrypt, verify } from "../utils/bcrypt.js";
 import { encode } from "../utils/jwt.js";
 import nodemailer from 'nodemailer';
@@ -11,7 +9,6 @@ import crypto from 'crypto';
 class AuthController {
   constructor() {
     this.userRepository = new UserRepository();
-    this.secQuestionsRepository = new SecQuestionsRepository();
   }
 
   async login(req, res) {
@@ -69,44 +66,6 @@ class AuthController {
         .json({ message: "Usuário criado com sucesso", user: newUser });
     } catch (err) {
       res.status(500).json({ message: "Erro ao criar usuário", err });
-    }
-  }
-
-  //Criar perguntas de segurança
-  async createSecQuestions(req, res) {
-    console.log(req.user)
-    const { question1, question2, question3, answer1, answer2, answer3 } = req.body;
-
-    if (!question1 || !question2 || !question3 || !answer1 || !answer2 || !answer3) {
-      return res.status(400).json({ message: "Dados inválidos" });
-    }
-
-    try {
-      const hashedAnswer1 = await encrypt(answer1);
-      const hashedAnswer2 = await encrypt(answer2);
-      const hashedAnswer3 = await encrypt(answer3);
-
-      const secQuestion = new SecQuestions();
-      secQuestion.question1 = question1;
-      secQuestion.question2 = question2;
-      secQuestion.question3 = question3;
-
-      secQuestion.answer1 = hashedAnswer1;
-      secQuestion.answer2 = hashedAnswer2;
-      secQuestion.answer3 = hashedAnswer3;
-
-      secQuestion.userId = req.user.id;
-
-      console.log(secQuestion.userId);
-
-      const newQuestions = await this.secQuestionsRepository.createSecQuestions(secQuestion);
-
-      res
-        .status(201)
-        .json({ message: "Perguntas de segurança criadas com sucesso", secQuestion: newQuestions });
-    } catch (err) {
-      console.log(err)
-      res.status(500).json({ message: "Erro ao criar perguntas de segurança", err });
     }
   }
 

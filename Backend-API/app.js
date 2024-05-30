@@ -8,6 +8,7 @@ import userRouter from './src/router/userRouter.js';
 import authRouter from './src/router/authRouter.js';
 import scheduleRouter from './src/router/scheduleRouter.js';
 import serviceRouter from './src/router/serviceRouter.js';
+import secQuestionsRouter from './src/router/secQuestionsRouter.js';
 
 import Config from './config.js';
 const config = new Config();
@@ -23,7 +24,8 @@ app.use(cors());
 app.use('/auth', authRouter);
 app.use('/user', authenticateJWT, userRouter);
 app.use('/schedule', authenticateJWT, scheduleRouter);
-app.use('/service', authenticateJWT, serviceRouter)
+app.use('/service', authenticateJWT, serviceRouter);
+app.use('/secQuestions', authenticateJWT, secQuestionsRouter);
 
 app.get('/api', (req, res) => {
     res.status().json({ message: "Api Rodando" })

@@ -12,7 +12,7 @@ document.getElementById('formSecurity').addEventListener('submit', async (event)
   const question3 = document.getElementById('question3').value;
 
   try {
-    const response = await fetch('http://localhost:3000/auth/secQuestions', {
+    const response = await fetch('http://localhost:3000/secQuestions/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

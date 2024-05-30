@@ -1,6 +1,6 @@
 import openDb from "../database/configDB.js";
 
-class QuestionsRepository {
+class SecQuestionsRepository {
   async createSecQuestions(secQuestion) {
     return openDb()
       .then((db) => {
@@ -28,4 +28,4 @@ class QuestionsRepository {
   }
 }
 
-export default QuestionsRepository;
+export default SecQuestionsRepository;
