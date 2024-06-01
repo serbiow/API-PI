@@ -21,6 +21,8 @@
 .section{
     background-color: var(--cor2);
 }
+
+
 .b-text{
     color: var(--preto);
 }
@@ -40,3 +42,32 @@
     border: solid;
     border-color: var(--preto);
 }
+
+.accordion {
+    background-color:#F3EADC;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  .active, .accordion:hover {
+    background-color: var(--marrom);
+    color: var(--cor3);
+  }
+  
+  .panel {
+    padding: 0 18px;
+    background-color: var(--cor1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  .card{
+    
+    background-color: var(--cor3);
+  }

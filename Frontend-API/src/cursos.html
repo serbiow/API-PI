@@ -6,13 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
   <link href="./input.css" rel="stylesheet">
+
+
+  <script src="./js/main.js" defer></script>
   <script src="node_modules/@material-tailwind/html@latest/scripts/ripple.js"></script>
 
-  <script src="node_modules/@material-tailwind/html/scripts/collapse.js"></script>
-  <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+
+
 
   <!-- from cdn -->
   <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <!-- Font Awesome Link -->
@@ -24,9 +28,11 @@
   <!-- script -->
   <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script>
 
+
 </head>
 
 <body>
+ 
   <nav class="nav-header text-[#0D1419] flex list-none  h-24 transition-all">
     <div class="mt-auto my-auto pl-5">
       <img class="w-36 h-36 flex relative bottom-6" src="img/LOGOTIPO-PRETO.png">
@@ -50,7 +56,7 @@
 
   <section class="text-2xl h-auto nav-header  text-black pt-48 py-48 justify-center text-center">
     <h4 class="text-4xl">Cursos</h4>
-    <p class="text-gray-700 text-2xl mt-6">Conheça nossos Cursos <br> Tudc o que precisa para se tornar uma profissional
+    <p class="text-gray-700 text-2xl mt-6">Conheça nossos Cursos <br> Tudo o que precisa para se tornar uma profissional
       de sucesso!</p>
 
     <button class="ml-auto mr-auto w-36 p-3 border-solid botao rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button>
@@ -60,17 +66,17 @@
 
 
 
-  <section class="bg-[#09172C] py-20 pt-20">
-    <div class="relative flex flex-col mt-6 text-gray-700 bg-clip-border rounded-xl w-96 max-w-90 shadow-xl bg-[#09172C]">
+  <section class=" pt-20 w-full h-fit py-32 justify-around flex section">
+    <div
+      class="card relative flex flex-col mt-6 text-gray-700 bg-clip-border rounded-xl w-96 max-w-90 shadow-xl">
       <div
-        class="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-        <img
-        src="https://blog.hanabeauty.com.br/wp-content/uploads/2021/12/Modelo-com-extensao-de-cilios.jpeg"
+        class="relative h-56 mx-4 -mt-6 overflow-hidden bg-clip-border rounded-xl bg-[#EBDBC2] shadow-blue-gray-500/40 max-w-90 shadow-xl">
+        <img class="px-12 pt-12" src="https://blog.hanabeauty.com.br/wp-content/uploads/2021/12/Modelo-com-extensao-de-cilios.jpeg"
           alt="card-image" />
       </div>
-      <div class="p-6">
+      <div class="p-6 ">
         <h5
-          class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+          class="block mb-2 text-xl antialiased leading-snug tracking-normal text-[#0D1419] font-semibold py-2  md:text-4xl">
           Curso VIP presencial
         </h5>
         <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
@@ -82,56 +88,55 @@
 
         </p>
       </div>
-      <div class="p-6 pt-0">
-        <div class="relative mb-3">
-          <h6 class="mb-0">
-            <button
-              class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500"
-              data-collapse-target="collapse-1">
-              <span>
-                Designer de sobrancelhas</span>
-              <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-              <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
+    
+       <div class="p-6 pt-0">
+        <div class="max-w-2xl mx-auto">
+          <div class="">
+            <button class="accordion flex items-center justify-between">
+              <span class="text-center antialiased leading-snug tracking-normal text-[#0D1419] items-center text-2xl md:text-3xl"> Designer de sobrancelha</span>
+             
+  
             </button>
-          </h6>
-          <div data-collapse="collapse-1" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-            <div class="p-4 text-sm leading-normal text-blue-gray-500/80">
-              Para iniciantes da àrea da estética ou aperfeiçoamento nas técnicas de design de sobrancelhas, aplicação
-              de henna e coloração! <br>
-              Profissão que vem ganhando muito destaque nos últimos anos, trazendo muito sucesso e sua indepência
-              financeira. <br>
-              - Carga horária: 12 horas <br>
-              - Aula téorica e prática em modelos <br>
-              - Certificado de conclusão <br>
-              - Apostila Impressa <br>
-              + bônus!
+            <div class="panel">
+              <div class="p-4 text-sm leading-normal text-[#0D1419] pl-8 md:pl-10">
+                Para iniciantes da àrea da estética ou aperfeiçoamento nas técnicas de design de sobrancelhas, aplicação
+                de henna e coloração! <br>
+                Profissão que vem ganhando muito destaque nos últimos anos, trazendo muito sucesso e sua indepência
+                financeira. <br>
+                - Carga horária: 12 horas <br>
+                - Aula téorica e prática em modelos <br>
+                - Certificado de conclusão <br>
+                - Apostila Impressa <br>
+                + bônus!
+              </div>
             </div>
           </div>
-        </div>
-        <div class="relative mb-3">
-          <h6 class="mb-0">
-            <button
-              class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500"
-              data-collapse-target="collapse-2">
-              <span>Brow Lamination</span>
-              <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-              <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
+          <div class= " ">
+            <button class="accordion flex items-center justify-between ">
+              <span class="text-center antialiased leading-snug tracking-normal text-[#0D1419] items-center text-2xl md:text-3xl">Brow Lamination</span>
+             
+  
             </button>
-          </h6>
-          <div data-collapse="collapse-2" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-            <div class="p-4 text-sm leading-normal text-blue-gray-500/80">
-              Trazendo naturalidade, volume e um design personalizado, é a tendência de 2024 entre as famosas!
-              Curso indicado para quem já é profissional da área de sobrancelhas
-              <br>
-              - Carga Horária: 6 horas <br>
-              - Apostila PDF <br>
-              - Téorica e prática em modelos <br>
-              - Certificado de conclusão <br>
-              + bônus !
+            <div class="panel">
+              <div class="p-4 text-sm leading-normal text-[#0D1419] pl-8 md:pl-10 ">
+                Trazendo naturalidade, volume e um design personalizado, é a tendência de 2024 entre as famosas!
+                Curso indicado para quem já é profissional da área de sobrancelhas
+                <br>
+                - Carga Horária: 6 horas <br>
+                - Apostila PDF <br>
+                - Téorica e prática em modelos <br>
+                - Certificado de conclusão <br>
+                + bônus !
+              </div>
             </div>
           </div>
+          
         </div>
-      </div>
+   
+        
+      </div> -->
+  
+
     </div>
 
 
@@ -143,6 +148,8 @@
 
 
   <section>
+
+
 
 
 
