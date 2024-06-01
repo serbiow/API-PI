@@ -3,13 +3,13 @@ const token = localStorage.getItem('token');
 document.getElementById('formSecurity').addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const answer1 = document.getElementById('answer1').value;
-  const answer2 = document.getElementById('answer2').value;
-  const answer3 = document.getElementById('answer3').value;
-
   const question1 = document.getElementById('question1').value;
   const question2 = document.getElementById('question2').value;
   const question3 = document.getElementById('question3').value;
+
+  const answer1 = document.getElementById('answer1').value;
+  const answer2 = document.getElementById('answer2').value;
+  const answer3 = document.getElementById('answer3').value;
 
   try {
     const response = await fetch('http://localhost:3000/secQuestions/create', {

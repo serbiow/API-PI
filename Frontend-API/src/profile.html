@@ -31,19 +31,29 @@
                 <img src="img/icone.png"
                     class="w-36 rounded-full border mb-4 border-gray-700 flex ml-auto mr-auto h-36 ">
                 <form id="updateUserForm">
-                    <input type="text" id="name" name="name" required class="bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
+                    <input type="text" id="name" name="name" required
+                        class="bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <br>
-                    <input type="email" id="email" name="email" required class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
+                    <input type="email" id="email" name="email" required
+                        class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <br>
-                    <input type="tel" id="phone" name="phone" required class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
+                    <input type="tel" id="phone" name="phone" required
+                        class="mt-2  bg-transparent text-center focus:outline-none outline-none border-b-2 border-gray-700">
                     <button class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit " type="submit">
                         <p class="pt-1">Alterar</p> <img src="img/lapis_icone.png" class="w-5  mt-1 ml-1 h-5">
-                    </button
+                    </button>
                 </form>
-                <button id="signOutBtn" class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
+                <a href="./forgotPassword.html">
+                    <button class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
+                        <p class="pt-1">Alterar Senha</p>
+                    </button>
+                </a>
+                <button id="signOutBtn"
+                    class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
                     <p class="pt-1">Sair</p>
                 </button>
-                <button id="deleteUserBtn" class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
+                <button id="deleteUserBtn"
+                    class="underline flex ml-auto mr-auto w-12 font-semibold text-base h-fit select-none ">
                     <p class="pt-1">Deletar</p>
                 </button>
             </div>
@@ -109,7 +119,8 @@
 
 
                     <!--Dentro dessa DIV vai vim todos os agendamentos, eles estão na tela ./js/scheduleList.js-->
-                    <div id="scheduleListContainer" class="flex flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700"></div>
+                    <div id="scheduleListContainer"
+                        class="flex flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700"></div>
                 </nav>
             </div>
 

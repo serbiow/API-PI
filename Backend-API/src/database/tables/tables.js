@@ -46,15 +46,27 @@ export function CreateTable() {
 
     db.exec(
       `
+              CREATE TABLE IF NOT EXISTS QUESTIONS
+              (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  question TEXT NOT NULL
+              );
+              `
+    );
+
+    db.exec(
+      `
               CREATE TABLE IF NOT EXISTS SECURITY_QUESTIONS
               (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  question TEXT NOT NULL,
                   answer TEXT NOT NULL,
+                  questionId INTEGER NOT NULL,
                   userId INTEGER NOT NULL,
+                  FOREIGN KEY(questionId) REFERENCES QUESTIONS(id),
                   FOREIGN KEY(userId) REFERENCES USER(id)
               );
               `
     );
+    
   });
 }

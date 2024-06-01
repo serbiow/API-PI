@@ -26,6 +26,7 @@ app.use('/user', authenticateJWT, userRouter);
 app.use('/schedule', authenticateJWT, scheduleRouter);
 app.use('/service', authenticateJWT, serviceRouter);
 app.use('/secQuestions', authenticateJWT, secQuestionsRouter);
+app.use('/recovery', secQuestionsRouter);
 
 app.get('/api', (req, res) => {
     res.status().json({ message: "Api Rodando" })

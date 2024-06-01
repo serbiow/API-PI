@@ -6,28 +6,37 @@ class SecQuestionsRepository {
       .then((db) => {
         return db.run(
           `
-          INSERT INTO SECURITY_QUESTIONS(question, answer, userId)
-          VALUES("${secQuestion.question1}", "${secQuestion.answer1}", ${secQuestion.userId}),
-          ("${secQuestion.question2}", "${secQuestion.answer2}", ${secQuestion.userId}),
-          ("${secQuestion.question3}", "${secQuestion.answer3}", ${secQuestion.userId})
+          INSERT INTO SECURITY_QUESTIONS(answer, questionId, userId)
+          VALUES
+          ("${secQuestion.answer1}", ${secQuestion.question1}, ${secQuestion.userId}),
+          ("${secQuestion.answer2}", ${secQuestion.question2}, ${secQuestion.userId}),
+          ("${secQuestion.answer3}", ${secQuestion.question3}, ${secQuestion.userId});
           `
-          // `
-          // INSERT INTO SECURITY_QUESTIONS(question, answer, userId)
-          // VALUES(?, ?, ?)
-          // `,
-          // [secQuestion.question2, secQuestion.answer2, secQuestion.userId],
-          // `
-          // INSERT INTO SECURITY_QUESTIONS(question, answer, userId)
-          // VALUES(?, ?, ?)
-          // `,
-          // [secQuestion.question3, secQuestion.answer3, secQuestion.userId]
         );
       })
       .catch((err) => {
         console.log(err)
         throw new Error("Erro na criação de perguntas de segurança");
       });
-  }
+  };
+
+  async findSecQuestions(userId) {
+    return openDb()
+      .then((db) => {
+        return db.all(
+          `
+          SELECT q.question, sq.answer
+          FROM SECURITY_QUESTIONS sq
+          JOIN QUESTIONS q ON sq.questionId = q.id
+          WHERE sq.userId = ${userId};
+          `
+        );
+      })
+      .catch((err) => {
+        console.log(err)
+        throw new Error("Erro ao encontrar perguntas de segurança");
+      });
+  };
 }
 
 export default SecQuestionsRepository;
