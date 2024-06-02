@@ -44,7 +44,7 @@
 }
 
 .accordion {
-    background-color:#F3EADC;
+    background-color: var(--cor1);
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -61,7 +61,7 @@
   }
   
   .panel {
-    padding: 0 18px;
+    padding: 0 16px;
     background-color: var(--cor1);
     max-height: 0;
     overflow: hidden;
