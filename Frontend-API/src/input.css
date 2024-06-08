@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     font-family: Arial;
 }
 
@@ -12,48 +12,55 @@
     --cor3: #F3EADC;
     --preto: #0D1419;
     --marrom: #3F3A37;
-  }
-
-.nav-header{
-    background-color: var(--cor3);
-   
 }
-.section{
+
+.nav-header {
+    background-color: var(--cor3);
+
+}
+
+.section {
     background-color: var(--cor2);
 }
-.b-text{
+
+.b-text {
     color: var(--preto);
 }
-.background-escuro{
+
+.background-escuro {
     background-color: var(--preto);
 }
-.botao{
+
+.botao {
     background-color: transparent;
     color: #0D1419;
     border: solid;
     border-color: var(--preto);
     transition: 0.3s;
 }
-.botao:hover{
+
+.botao:hover {
     background-color: var(--preto);
     color: var(--cor3);
     border: solid;
     border-color: var(--preto);
 }
 
-.cards{
+.cards {
     background-color: var(--cor1);
 }
-.borda-agend{
+
+.borda-agend {
     border-bottom: #3F3A37;
     border-style: solid;
     border-width: 0.3px;
     border-top: none;
     border-left: none;
     border-right: none;
-    
+
 }
-.border-agendamentos{
+
+.border-agendamentos {
     border-left: solid;
     border-width: 0.3px;
     border-color: #3F3A37;
@@ -61,4 +68,30 @@
     border-right: none;
     border-bottom: none;
     padding-left: 10px;
+}
+
+.accordion {
+    background-color: var(--cor1);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: var(--marrom);
+    color: var(--cor3);
+}
+
+.panel {
+    padding: 0 16px;
+    background-color: var(--cor1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }

@@ -83,11 +83,33 @@ document.getElementById('confirmSecQuestionsForm').addEventListener('submit', as
 document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    let hasError = false;
+
     const newPassword = document.getElementById('new-password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
+    if (!confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = 'Confirme a senha.';
+        hasError = true;
+    }
+
+    // Função para validar a senha
+    function isValidPassword(newPassword) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return passwordRegex.test(newPassword);
+    }
+
+    if (!isValidPassword(newPassword)) {
+        document.getElementById('passwordError').textContent = 'A senha deve ter no mínimo 8 caracteres, incluindo letras maiúsculas e minúsculas, números e símbolos.';
+        hasError = true;
+    }
+
     if (newPassword !== confirmPassword) {
-        alert('As senhas não coincidem.');
+        document.getElementById('confirmPasswordError').textContent = 'As senhas não correspondem.';
+        hasError = true;
+    }
+
+    if (hasError) {
         return;
     }
 
