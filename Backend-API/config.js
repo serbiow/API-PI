@@ -1,10 +1,10 @@
-import { populate } from "./database/tables/seed.js";
-import { createTables } from "./database/tables/tables.js";
+import { populate } from "./src/database/tables/seed.js";
+import { createTables } from "./src/database/tables/tables.js";
 
 class Config {
     constructor() {}
 
-    async pre_flight_check() {
+    async pre_fligth_check() {
         try {
             await createTables();
             await populate();
