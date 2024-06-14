@@ -1,9 +1,9 @@
-//import serviceSeeds from '../../assets/services.json';
 import openDb from "../configDB.js";
+
 const serviceSeeds = [
     /*
     {
-        "name":"serviço 1",
+        "name": "serviço 1",
         "description": "desc",
         "price":  100.00,
         "duration": 1
@@ -11,7 +11,7 @@ const serviceSeeds = [
     */
 ];
 
-const questionSeeds =[
+const questionSeeds = [
     {
         "question": "Qual é o nome da sua cidade natal?"
     },
@@ -41,36 +41,24 @@ const questionSeeds =[
     }
 ];
 
-export function populate(){
+export async function populate() {
+    const db = await openDb();
 
-    serviceSeeds.forEach(seed => {
-        openDb().then(db => {
-            db.exec(
-                `
-                INSERT INTO SERVICES (name, description, price, duration)
-                    VALUES(
-                        '${seed.name}',
-                        '${seed.description}',
-                        '${seed.price}',
-                        '${seed.duration}'
-                    );
-                `
-            );
-        })
-    });
+    for (const seed of serviceSeeds) {
+        await db.exec(
+            `
+            INSERT INTO SERVICES (name, description, price, duration)
+                VALUES('${seed.name}', '${seed.description}', '${seed.price}', '${seed.duration}');
+            `
+        );
+    }
 
-    questionSeeds.forEach(question => {
-        openDb().then(db => {
-            db.exec(
-                `
-                INSERT INTO QUESTIONS (question)
-                    VALUES(
-                        '${question.question}'
-                    );
-                `
-            );
-        })
-    });
-};
-
-
+    for (const question of questionSeeds) {
+        await db.exec(
+            `
+            INSERT INTO QUESTIONS (question)
+                VALUES('${question.question}');
+            `
+        );
+    }
+}

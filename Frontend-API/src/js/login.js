@@ -1,10 +1,11 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    window.location.href = './profile.html';
-    return;
-  }
-});
+// TODO: consertar o middleware da tela de login
+// document.addEventListener('DOMContentLoaded', async () => {
+//   const token = localStorage.getItem('token');
+//   if (token) {
+//     window.location.href = './profile.html';
+//     return;
+//   }
+// });
 
 document.getElementById('loginForm').addEventListener('submit', async (event) => {
   event.preventDefault();

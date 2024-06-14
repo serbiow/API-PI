@@ -1,14 +1,17 @@
-import { populate } from "./src/database/tables/seed.js";
-import { CreateTable } from "./src/database/tables/tables.js";
+import { populate } from "./database/tables/seed.js";
+import { createTables } from "./database/tables/tables.js";
 
-class Config{
-    constructor(){}
+class Config {
+    constructor() {}
 
-    pre_fligth_check(){
-        CreateTable();
-        populate();        
+    async pre_flight_check() {
+        try {
+            await createTables();
+            await populate();
+        } catch (error) {
+            console.error('Erro ao criar a tabela ou popular dados:', error);
+        }
     }
-
 }
 
 export default Config;
