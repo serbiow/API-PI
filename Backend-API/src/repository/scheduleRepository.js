@@ -50,6 +50,20 @@ class ScheduleRepository {
     });
   }
 
+  async findByDateTime(date, time) {
+    return openDb().then((db) => {
+      return db
+        .get(
+        `
+          SELECT *
+          FROM SCHEDULE
+          WHERE date = "${date}" AND
+          time = "${time}"
+        `
+      )
+    });
+  }
+
   async findByUserId(userId) {
     return openDb().then((db) => {
       return db

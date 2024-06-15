@@ -7,18 +7,29 @@ class ScheduleController {
   }
 
   async createSchedule(req, res) {
-    const { serviceId, date, time } = req.body;
-    const schedule = new Schedule(serviceId, date, time, req.user.id);
-    if (!schedule.serviceId || !schedule.date || !schedule.time || !schedule.userId) {
-      return res.status(400).json({ message: "Dados Invalidos" });
-    }
+    try {
+      const { serviceId, date, time } = req.body;
+      const schedule = new Schedule(serviceId, date, time, req.user.id);
 
-    this.scheduleRepository.createSchedule(schedule).then((newSchedule) => {
-      res.status(201).json(newSchedule);
-    }).catch((err) => {
-      res.status(500).json({ message: err });
-    });
+      // verificar se é válido
+      if (!schedule.serviceId || !schedule.date || !schedule.time || !schedule.userId) {
+        return res.status(400).json({ message: "Dados Invalidos" });
+      }
+
+      // verificar se existe
+      const existingSchedule = await this.scheduleRepository.findByDateTime(date, time);
+      if (existingSchedule) {
+        return res.status(400).json('Agendamento já existente');
+      }
+
+      // criar agendamento
+      const newSchedule = await this.scheduleRepository.createSchedule(schedule);
+      return res.status(201).json(newSchedule);
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
   }
+
 
   async updateScheduleDate(req, res) {
     const { scheduleId, newDate, newTime } = req.body;
@@ -37,6 +48,13 @@ class ScheduleController {
       res.status(200).json(schedule)
     }).catch(err => {
       res.status(404).json({ message: "Agendamento não existe" })
+    })
+  };
+
+  async findByDateTime(req, res) {
+    const { date, time } = req.query;
+    this.scheduleRepository.findByDateTime(date, time).then(schedule => {
+      res.status(400).json(schedule)
     })
   };
 
