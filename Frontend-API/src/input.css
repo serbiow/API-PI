@@ -95,3 +95,6 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+.container{
+  background-color: var(--cor3);
+}
