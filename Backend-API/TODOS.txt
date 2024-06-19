@@ -1,22 +1,13 @@
-COISAS PARA FAZER
+OBRIGATÓRIOS
+1- Disponibilidade de geração de relatórios do ADM
+2- Validações de agendamento (restrição de cadastro pela duração, restrição de delete)
+3- Update de agendamento
 
-1 - VER COMO FAZER AS RESTRIÇÕES DE AGENDAMENTO (SCHEDULE)
+talvez...
+4- Cadastro, update e delete por parte do ADM
 
-2 - IMPLEMETAR A CLASSE DATABASE NAS REPOSITORYS
-3 - CRIAR REPOSITORY DE SERVICES (UPDATE, LIST)
-4 - CRIAR CONTROLLER DE SERVICES
-
-5 - ADAPTAR O MÉTODO findByUserId --> scheduleRepository (listagem de agendamentos)
-
-6 - REFINAMENTO --> TRAMENTO DE ERROS (TRY CATCH, THEN) --> PADRONIZAR 
-
-7 - ARRUMAR B.O DO .env
-
-8 - IMPLEMETAR O TOKEN NAS CONTROLLERS (VALIDAÇÃO DO TOKEN E PERMISSÕES DO USUÁRIO)
-9 - CONEXÃO COM O FRONT
-
-10 - FRONT END (PAGS)
-
-11 - Account Status
-
-
+FRONT-END
+1- Navegabilidade entre páginas (<a>)
+2- Botão de Login/Perfil
+3- Tela de cadastro de pergunta de segurança
+4- Refazer a tela de perfil

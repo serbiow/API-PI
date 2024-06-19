@@ -10,8 +10,29 @@
 document.getElementById('loginForm').addEventListener('submit', async (event) => {
   event.preventDefault();
 
+  // erros
+  document.getElementById('emailError').textContent = '';
+  document.getElementById('passwordError').textContent = '';
+  document.getElementById('formError').textContent = '';
+
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+
+  let hasError = false;
+
+  if (!email) {
+    document.getElementById('emailError').textContent = 'Email é obrigatório.';
+    hasError = true;
+  }
+
+  if (!password) {
+    document.getElementById('passwordError').textContent = 'Senha é obrigatória.';
+    hasError = true;
+  }
+
+  if (hasError) {
+    return;
+  }
 
   try {
     const response = await fetch('http://localhost:3000/auth/login', {
@@ -28,13 +49,36 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
       // Armazenar o token no localStorage
       localStorage.setItem('token', data.token);
       alert('Login bem-sucedido!');
-      // Redirecionar para uma página protegida, se necessário
-      window.location.href = './profile.html';
+
+      // Confirmar se existe perguntas de segurança cadastradas
+      const response2 = await fetch('http://localhost:3000/secQuestions/verify', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${data.token}`
+        }
+      });
+
+      const data2 = await response2.json();
+
+      if (response2.ok && data2.hasSecurityQuestions) {
+        // Redirecionar para uma página protegida, se necessário
+        window.location.href = './profile.html';
+      }
+      else {
+        if (confirm("Perguntas de seguranças não cadastradas. Deseja cadastrá-las?") == true) {
+          window.location.href = './secQuestions.html';
+        }
+        else {
+          window.location.href = './index.html';
+        }
+      }
+
     } else {
       alert(data.message || 'Falha no login');
     }
   } catch (error) {
     console.error('Erro:', error);
-    alert('Erro ao fazer login');
+    document.getElementById('formError').textContent = 'Email ou senha inválidos.';
+    return
   }
 });

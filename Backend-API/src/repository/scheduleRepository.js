@@ -69,7 +69,7 @@ class ScheduleRepository {
       return db
         .get(`SELECT * FROM SCHEDULE WHERE userId = ${userId}`)
         .then((res) => res);
-    }).catch(err => { throw new Error("Agendamento não encotrado")});
+    }).catch(err => { throw new Error("Agendamento não encontrado")});
   }
 
   async listAllSchedules(userId) {

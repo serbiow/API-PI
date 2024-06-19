@@ -23,7 +23,25 @@ class SecQuestionsController {
 
         } catch (error) {
             console.log(error)
-            res.status(500).json({ message: "Erro ao encontrar perguntas de segurança", err });
+            res.status(500).json({ message: "Erro ao encontrar perguntas de segurança", error });
+        }
+    }
+
+    // TODO: verificar se existe pergunta de segurança
+    async verify(req, res) {
+        const userId = req.user.id
+
+        if (!userId) {
+            return res.status(400).json({ message: "Dados inválidos" });
+        }
+
+        const verified = await this.secQuestionsRepository.verify(userId);
+
+        if (verified.length == 3) {
+            res.json({ hasSecurityQuestions: true })
+        }
+        else{
+            res.json({ hasSecurityQuestions: false })
         }
     }
 

@@ -20,6 +20,14 @@ class SecQuestionsRepository {
       });
   };
 
+  async verify(userId) {
+    return openDb().then((db) => {
+      return db
+        .all(`SELECT * FROM SECURITY_QUESTIONS WHERE userId = ${userId}`)
+        .then((res) => res);
+    }).catch(err => { throw new Error("Pergunta de segurança não cadastrada") });
+  }
+
   async findSecQuestions(userId) {
     return openDb()
       .then((db) => {

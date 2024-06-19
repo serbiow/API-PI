@@ -1,5 +1,5 @@
-import { populate } from "./src/database/tables/seed.js";
 import { createTables } from "./src/database/tables/tables.js";
+import { populate } from "./src/database/tables/seed.js";
 
 class Config {
     constructor() {}
