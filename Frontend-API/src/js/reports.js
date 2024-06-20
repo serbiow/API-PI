@@ -25,11 +25,45 @@ document.getElementById('relatorio1').addEventListener('click', async (event) =>
 });
 
 document.getElementById('relatorio2').addEventListener('click', async (event) => {
-    alert('relatorio2')
+    try {
+        date = prompt("Por favor, digite a data", "mm/dd/yyyy")
+        const response = await fetch('http://localhost:3000/reports/day', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ date })
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar agendamentos');
+        }
+
+        const list = await response.json();
+        console.log(list);
+    } catch (error) {
+        console.error('Erro:', error);
+    }
 });
 
 document.getElementById('relatorio3').addEventListener('click', async (event) => {
-    alert('relatorio3')
+    try {
+        const response = await fetch('http://localhost:3000/reports/trending', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar agendamentos');
+        }
+
+        const list = await response.json();
+        console.log(list);
+    } catch (error) {
+        console.error('Erro:', error);
+    }
 });
 
 // TODO: Gerar PDF do relatório
