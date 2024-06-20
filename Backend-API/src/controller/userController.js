@@ -43,6 +43,7 @@ class UserController {
                 name: name || newUserData.name,
                 email: email || newUserData.email,
                 phone: phone || newUserData.phone,
+                staff: req.user.staff
             });
 
             // Retorne o novo token e uma mensagem de sucesso

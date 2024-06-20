@@ -16,6 +16,7 @@ class AuthController {
     const { email } = req.params;
 
     this.userRepository.findUserByEmail(email).then((user) => {
+      console.log(user)
       res.json({
         id: user.id,
         name: user.name,
@@ -36,7 +37,7 @@ class AuthController {
       .then((user) => {
         verify(password, user.password, (err, result) => {
           if (result) {
-            encode({ id: user.id, name: user.name, email: user.email, phone: user.phone }).then(
+            encode({ id: user.id, name: user.name, email: user.email, phone: user.phone, staff: user.staff }).then(
               (token) => {
                 res.json({ token });
               }

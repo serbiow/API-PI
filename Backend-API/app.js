@@ -9,6 +9,7 @@ import authRouter from './src/router/authRouter.js';
 import scheduleRouter from './src/router/scheduleRouter.js';
 import serviceRouter from './src/router/serviceRouter.js';
 import secQuestionsRouter from './src/router/secQuestionsRouter.js';
+import reportsRouter from './src/router/reportsRouter.js';
 
 import Config from './config.js';
 const config = new Config();
@@ -27,6 +28,7 @@ app.use('/schedule', authenticateJWT, scheduleRouter);
 app.use('/service', authenticateJWT, serviceRouter);
 app.use('/secQuestions', authenticateJWT, secQuestionsRouter);
 app.use('/recovery', secQuestionsRouter);
+app.use('/reports', reportsRouter);
 
 app.get('/api', (req, res) => {
     res.status().json({ message: "Api Rodando" })

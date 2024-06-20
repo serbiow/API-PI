@@ -5,11 +5,12 @@ class ScheduleRepository {
     openDb().then((db) => {
       db.exec(
         `
-          INSERT INTO SCHEDULE(serviceId, date, time, userId)
+          INSERT INTO SCHEDULE(serviceId, date, time, status, userId)
           VALUES(
               "${schedule.serviceId}",
               "${schedule.date}",
               "${schedule.time}",
+              "1",
               "${schedule.userId}"
           );
       `
@@ -80,9 +81,8 @@ class ScheduleRepository {
           SELECT s.id, s.date, s.time, s.userId, s.serviceId, se.name AS serviceName, u.name AS userName, u.email FROM SCHEDULE AS s 
           JOIN USER AS u ON u.id = s.userId
           JOIN SERVICES AS se ON se.id = s.serviceId
-          WHERE userId = '${userId}'
-          OR (SELECT staff FROM USER WHERE id = "${userId}") = 1
-
+          WHERE (userId = '${userId}' AND status = "1")
+          OR ((SELECT staff FROM USER WHERE id = "${userId}") = 1 AND status = "1")
           `)
         .then((res) => res).catch(err => { throw new Error("Nenhum agendameto disponível")});
     });
@@ -92,11 +92,12 @@ class ScheduleRepository {
     openDb().then((db) => {
       db.exec(
         `
-          DELETE FROM SCHEDULE 
-          WHERE id = "${scheduleId}" 
+          UPDATE schedule
+          SET status = "0"
+          WHERE id = "${scheduleId}"
           AND (userId = "${userId}" 
           OR (SELECT staff FROM USER WHERE id = "${userId}") = 1)
-          `
+        `
       ).catch(err => { throw new Error("Erro ao realizar operação")});
     });
   };

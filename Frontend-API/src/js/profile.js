@@ -19,7 +19,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('name').value = userData.name;
             document.getElementById('email').value = userData.email;
             document.getElementById('phone').value = userData.phone;
-            //document.getElementById('password').value = '';
+
+            // verificação para saber se é STAFF
+            if (userData.staff == 1) {
+                document.getElementById('relatorio1').style.display = 'block';
+                document.getElementById('relatorio2').style.display = 'block';
+                document.getElementById('relatorio3').style.display = 'block';
+            }
+
         } else {
             alert('Sessão inválida. Faça login novamente.');
             window.location.href = './login.html';

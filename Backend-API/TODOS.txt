@@ -1,6 +1,14 @@
 OBRIGATÓRIOS
 1- Disponibilidade de geração de relatórios do ADM
+últimos realizados (FEITO)
+realórios do dia
+próximo agendamento
+procedimentos mais realizados
+
+1.2 - Fazer o retorno adequado dos relatório (pdf ou modal)
+
 2- Validações de agendamento (restrição de cadastro pela duração, restrição de delete)
+
 3- Update de agendamento
 
 talvez...

@@ -47,6 +47,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     if (response.ok) {
       // Armazenar o token no localStorage
+      console.log(data.token)
       localStorage.setItem('token', data.token);
       alert('Login bem-sucedido!');
 

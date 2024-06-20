@@ -123,7 +123,8 @@ document.getElementById('resetPasswordForm').addEventListener('submit', async (e
 
     if (response.ok) {
         alert('Senha redefinida com sucesso.');
-        document.getElementById('resetPasswordForm').style.display = 'none';
+        // document.getElementById('resetPasswordForm').style.display = 'none';
+        window.location.href = './login.html';
     } else {
         const data = await response.json();
         alert(`Erro: ${data.message}`);
