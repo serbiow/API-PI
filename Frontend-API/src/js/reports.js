@@ -1,9 +1,3 @@
-// import PDFDocument from 'pdfkit';
-// import fs from 'fs';
-
-// const PDFDocument = require('pdfkit');
-// const fs = require('fs');
-
 document.getElementById('relatorio1').addEventListener('click', async (event) => {
     try {
         const response = await fetch('http://localhost:3000/reports/lasts', {
@@ -18,15 +12,16 @@ document.getElementById('relatorio1').addEventListener('click', async (event) =>
         }
 
         const list = await response.json();
-        console.log(list);
+        showModal('Relatório - Últimos Agendamentos', formatReport(list));
     } catch (error) {
         console.error('Erro:', error);
+        showModal('Erro', error.message);
     }
 });
 
 document.getElementById('relatorio2').addEventListener('click', async (event) => {
     try {
-        date = prompt("Por favor, digite a data", "mm/dd/yyyy")
+        const date = prompt("Por favor, digite a data", "mm/dd/yyyy");
         const response = await fetch('http://localhost:3000/reports/day', {
             method: 'POST',
             headers: {
@@ -40,9 +35,10 @@ document.getElementById('relatorio2').addEventListener('click', async (event) =>
         }
 
         const list = await response.json();
-        console.log(list);
+        showModal('Relatório - Agendamentos por Dia', formatReport(list));
     } catch (error) {
         console.error('Erro:', error);
+        showModal('Erro', error.message);
     }
 });
 
@@ -60,23 +56,55 @@ document.getElementById('relatorio3').addEventListener('click', async (event) =>
         }
 
         const list = await response.json();
-        console.log(list);
+        showModal('Relatório - Agendamentos Mais Realizados', formatReport(list));
     } catch (error) {
         console.error('Erro:', error);
+        showModal('Erro', error.message);
     }
 });
 
-// TODO: Gerar PDF do relatório
-// function generatePDF(list) {
-//     console.log
-//     const doc = new PDFDocument({size: 'A4'});
-//     doc.pipe(fs.createWriteStream('relatorio.pdf'));
+function formatReport(report) {
+    if (!Array.isArray(report) || report.length === 0) {
+        return '<p>Nenhum dado disponível.</p>';
+    }
 
-//     doc.fontSize(25).text('Relatório', 100, 80);
+    if (report[0].hasOwnProperty('date') && report[0].hasOwnProperty('time')) {
+        return formatScheduleReport(report);
+    } else if (report[0].hasOwnProperty('service_name') && report[0].hasOwnProperty('total_schedules')) {
+        return formatTrendingReport(report);
+    }
 
-//     list.forEach((schedule) => {
-//         doc.fontSize(14).text(`${schedule.serviceName} - ${schedule.data} - ${schedule.time} - ${schedule.username} - ${schedule.userPhone}`, 100, 120 + index * 20);
-//     });
+    return '<p>Formato de relatório desconhecido.</p>';
+}
 
-//     doc.end();
-// }
+function formatScheduleReport(report) {
+    let table = '<table class="min-w-full bg-white">';
+    table += '<thead><tr><th class="px-4 py-2">Data</th><th class="px-4 py-2">Hora</th><th class="px-4 py-2">Serviço</th><th class="px-4 py-2">Cliente</th><th class="px-4 py-2">Telefone</th></tr></thead>';
+    table += '<tbody>';
+
+    report.forEach(item => {
+        table += `<tr><td class="border px-4 py-2">${item.date}</td><td class="border px-4 py-2">${item.time}</td><td class="border px-4 py-2">${item.serviceName}</td><td class="border px-4 py-2">${item.userName}</td><td class="border px-4 py-2">${item.userPhone}</td></tr>`;
+    });
+
+    table += '</tbody></table>';
+    return table;
+}
+
+function formatTrendingReport(report) {
+    let table = '<table class="min-w-full bg-white">';
+    table += '<thead><tr><th class="px-4 py-2">Nome do Serviço</th><th class="px-4 py-2">Total de Agendamentos</th></tr></thead>';
+    table += '<tbody>';
+
+    report.forEach(item => {
+        table += `<tr><td class="border px-4 py-2">${item.service_name}</td><td class="border px-4 py-2">${item.total_schedules}</td></tr>`;
+    });
+
+    table += '</tbody></table>';
+    return table;
+}
+
+function showModal(title, content) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalContent').innerHTML = content;
+    document.getElementById('reportModal').classList.remove('hidden');
+}

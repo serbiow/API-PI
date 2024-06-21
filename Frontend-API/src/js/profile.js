@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // verificação para saber se é STAFF
             if (userData.staff == 1) {
+                document.getElementById('h3-report').style.display = 'block';
                 document.getElementById('relatorio1').style.display = 'block';
                 document.getElementById('relatorio2').style.display = 'block';
                 document.getElementById('relatorio3').style.display = 'block';

@@ -15,7 +15,7 @@ class ReportsRepository {
           FROM SCHEDULE AS s 
           JOIN USER AS u ON u.id = s.userId
           JOIN SERVICES AS se ON se.id = s.serviceId
-          WHERE s.status = "1" AND s.date <= ${currentDate} LIMIT 100
+          WHERE s.status = "1" AND s.date <= "${currentDate}" LIMIT 100
         `
       ).then((res) => res).catch(err => { throw new Error("Erro ao buscar agendamentos") });
     });
@@ -34,7 +34,9 @@ class ReportsRepository {
           FROM SCHEDULE AS s 
           JOIN USER AS u ON u.id = s.userId
           JOIN SERVICES AS se ON se.id = s.serviceId
-          WHERE s.status = "1" AND s.date = "${date}" LIMIT 100
+          WHERE s.status = "1" AND s.date = "${date}"
+          ORDER BY
+          date ASC LIMIT 100
         `
       ).then((res) => res).catch(err => { throw new Error("Erro ao buscar agendamentos") });
     });

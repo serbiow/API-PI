@@ -60,8 +60,6 @@ function displaySchedules(schedules) {
 
 async function deleteSchedule(event) {
     const scheduleId = event.currentTarget.getAttribute('data-id');
-    console.log(`${scheduleId}`)
-    console.log(token)
     try {
         const response = await fetch(`http://localhost:3000/schedule/delete?id=${scheduleId}`, {
             method: 'DELETE',

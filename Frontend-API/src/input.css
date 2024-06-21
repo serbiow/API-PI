@@ -5,9 +5,7 @@
 * {
     font-family: Arial;
 }
-*{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+
 :root {
     --cor1: #EBDBC2;
     --cor2: #BEB8AE;
@@ -16,25 +14,25 @@
     --marrom: #3F3A37;
 }
 
-.nav-header{
+.nav-header {
     background-color: var(--cor1);
-   
+
 }
-.header-bg{
-   
+
+.header-bg {
+
     background-size: cover;
     background-repeat: no-repeat;
     height: 600px;
-   
+
     background-color: #0D1419;
-   
+
 }
-.section{
-    background-color: var(--cor1);
-    display: flex;
-   
- 
+
+.section {
+    background-color: var(--cor3);
 }
+
 .b-text {
     color: var(--preto);
 }
@@ -72,30 +70,33 @@
     border: solid;
     border-color: var(--cor1);
 }
-.saiba-mais{
+
+.saiba-mais {
     transition: ease-in-out 0.2s;
-    }
-    .saiba-mais:hover{
+}
+
+.saiba-mais:hover {
     background-color: #E7C7A1;
     color: #0D1419;
-     
-     
-    }
 
-    .estetica{
-        height: 600px;
-    }
-    @media(max-width:1000px){
-        .estetica{
-            display: none;
-           ;
-        }
-    }
 
-    .footer-color{
-        background-color: var(--preto);
-     
+}
+
+.estetica {
+    height: 600px;
+}
+
+@media(max-width:1000px) {
+    .estetica {
+        display: none;
+        ;
     }
+}
+
+.footer-color {
+    background-color: var(--preto);
+
+}
 
 .cards {
     background-color: var(--cor1);
@@ -146,15 +147,16 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-.container{
-  background-color: var(--cor3);
+
+.container {
+    background-color: var(--cor3);
 }
 
 .bg-caramelo {
     background-color: #E7C7A1;
 }
 
-.border-agendamentos{
+.border-agendamentos {
     border-left: solid;
     border-width: 0.3px;
     border-color: #3F3A37;
@@ -163,69 +165,78 @@
     border-bottom: none;
     padding-left: 10px;
 }
- 
-.fundo-card-modelo-1{
+
+.fundo-card-modelo-1 {
     background-image: url("img/fundo_escuro.png");
     background-size: cover;
     width: 560px;
     height: 560px;
-   
+
 }
-.fundo-card-modelo-2{
+
+.fundo-card-modelo-2 {
     background-image: url("img/fundo_claro.png");
     background-size: cover;
     width: 560px;
     height: 560px;
 }
-.fundo-card-modelo-3{
+
+.fundo-card-modelo-3 {
     background-image: url("img/fundo_escuro2.png");
     background-size: cover;
     width: 560px;
     height: 560px;
 }
-.fundo-card-modelo-4{
+
+.fundo-card-modelo-4 {
     background-image: url("img/fundo_claro2.png");
     background-size: cover;
     width: 560px;
     height: 560px;
 }
-.fundo-card-modelo-5{
+
+.fundo-card-modelo-5 {
     background-image: url("img/fundo_escuro3.png");
     background-size: cover;
     width: 560px;
     height: 590px;
 }
-.fundo-card-modelo-6{
+
+.fundo-card-modelo-6 {
     background-image: url("img/fundo_claro3.png");
     background-size: cover;
     width: 560px;
     height: 590px;
 }
-.text-dourado{
+
+.text-dourado {
     color: #E7C7A1;
 }
-.borda-dourada{
+
+.borda-dourada {
     border-radius: 100%;
     border-color: #E7C7A1;
     padding: 12px;
     border-style: solid;
     border-width: 1px;
 }
- 
-.borda-dourada-2{
+
+.borda-dourada-2 {
     border-radius: 100%;
     border-color: #3F3A37;
     padding: 12px;
     border-style: solid;
     border-width: 1px;
 }
-.card-home{
+
+.card-home {
     background-color: var(--preto);
     color: var(--cor1);
     height: 431px;
     width: 485px;
 }
-.fundo-cor{
+
+.fundo-cor {
     background-image: url('img/duascores.png');
     width: 1056px;
     height: 550px;
@@ -238,16 +249,38 @@
     border-width: 5px;
     border-style: solid;
 }
-.tailine-fundo{
+
+.tailine-fundo {
     background-image: url('img/bg-tailine.png');
     background-color: #0D1419;
     background-size: cover;
     height: 800px;
-   
+
 }
-.img-tailine{
+
+.img-tailine {
     border-radius: 100%;
     border-color: #0D1419;
     border-width: 2px;
-    
+
+}
+
+.bg-cor1 {
+    background-color: var(--cor1);
+}
+
+.bg-cor2 {
+    background-color: var(--cor2);
+}
+
+.bg-cor3 {
+    background-color: var(--cor3);
+}
+
+.bg-preto {
+    background-color: var(--preto);
+}
+
+.bg-marrom {
+    background-color: var(--marrom);
 }

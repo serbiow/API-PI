@@ -16,7 +16,6 @@ class AuthController {
     const { email } = req.params;
 
     this.userRepository.findUserByEmail(email).then((user) => {
-      console.log(user)
       res.json({
         id: user.id,
         name: user.name,
