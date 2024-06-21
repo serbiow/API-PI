@@ -1,21 +1,26 @@
 OBRIGATÓRIOS
 1- Disponibilidade de geração de relatórios do ADM
-últimos realizados (FEITO)
-agendamentos do dia (FEITO)
-próximo agendamento (será que precisa?)
-procedimentos mais realizados (FEITO)
+    1.1- últimos realizados (FEITO)
+    1.2- agendamentos do dia (FEITO)
+    1.3- próximo agendamento (será que precisa?)
+    1.4- procedimentos mais realizados (FEITO)
 
-1.2 - Fazer o retorno adequado dos relatório (pdf ou modal)
+1.5 - Fazer o retorno adequado dos relatório (FEITO com modal)
 
-2- Validações de agendamento (restrição de cadastro pela duração, restrição de delete)
+2- Validações de agendamento
+    2.1- restrição de cadastro pela duração
+    2.2- restrição de delete (FEITO)
 
-3- Update de agendamento
+3- Update de agendamento (FEITO)
 
 talvez...
-4- Cadastro, update e delete por parte do ADM
+4- CRUD schedules pelo ADM
+    4.1- Create
+    4.2- Update (FEITO)
+    4.3- Delete (FEITO)
 
 FRONT-END
-1- Navegabilidade entre páginas (<a>)
+1- Navegabilidade entre páginas (<a>) (REVISAR)
 2- Botão de Login/Perfil
-3- Tela de cadastro de pergunta de segurança
-4- Refazer a tela de perfil
+3- Tela de cadastro de pergunta de segurança (FEITO, falta ajeitar as cores)
+4- Refazer a tela de perfil (FEITO)

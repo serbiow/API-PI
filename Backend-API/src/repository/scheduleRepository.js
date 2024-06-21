@@ -38,7 +38,7 @@ class ScheduleRepository {
         .get(
         `
           SELECT 
-          s.id, s.date, s.userId, s.serviceId, 
+          s.id, s.date, s.time, s.userId, s.serviceId, 
           se.name AS serviceName, se.price, se.description, se.duration,
           u.name AS userName, u.email 
           FROM SCHEDULE AS s 

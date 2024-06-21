@@ -170,7 +170,47 @@
         </section>
     </main>
 
-    <!-- Estrutura do Modal -->
+    <!-- Estrutura do Modal de Edição -->
+    <div id="editScheduleModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg w-3/4 md:w-1/2 lg:w-1/3">
+            <div class="flex justify-between items-center border-b p-4">
+                <h3 class="text-lg font-semibold">Editar Agendamento</h3>
+                <button id="closeEditModal" class="text-black">X</button>
+            </div>
+            <div class="p-4">
+                <form id="editScheduleForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="editServiceName">Serviço</label>
+                        <input id="editServiceName" name="serviceName" type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="editDate">Data</label>
+                        <input id="editDate" name="date" type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="editTime">Hora</label>
+                        <input id="editTime" name="time" type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            required>
+                    </div>
+                    <input id="editScheduleId" name="id" type="hidden">
+                    <div class="flex items-center justify-between">
+                        <button
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estrutura do Modal de Relatório -->
     <div id="reportModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded-lg w-3/4 md:w-1/2 lg:w-1/3">
             <div class="flex justify-between items-center border-b p-4">

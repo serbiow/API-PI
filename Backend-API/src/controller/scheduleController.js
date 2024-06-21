@@ -32,9 +32,23 @@ class ScheduleController {
 
 
   async updateScheduleDate(req, res) {
-    const { scheduleId, newDate, newTime } = req.body;
+    const scheduleId = req.query.id;
+    const newSchedule = req.body;
+
+    // Pegar data atual
+    var datetime = new Date();
+    let date = ("0" + datetime.getDate()).slice(-2);
+    let month = ("0" + (datetime.getMonth() + 1)).slice(-2);
+    let year = datetime.getFullYear();
+
+    const currentDate = (month + "/" + date + "/" + year)
+
+    if(currentDate <= newSchedule.date){
+      res.status(400).json({ message: "O agendamento não pode mais ser alterado" });
+    }
+
     this.scheduleRepository.findById(scheduleId).then(schedule => {
-      this.scheduleRepository.updateScheduleData(scheduleId, req.user.id, newDate, newTime).then(() => {
+      this.scheduleRepository.updateScheduleDate(scheduleId, req.user.id, newSchedule.date, newSchedule.time).then(() => {
         res.status(204);
       });
     }).catch(err => {
@@ -68,7 +82,19 @@ class ScheduleController {
 
   async deleteSchedule(req, res) {
     const scheduleId = req.query.id;
+
+    // Pegar data atual
+    var datetime = new Date();
+    let date = ("0" + datetime.getDate()).slice(-2);
+    let month = ("0" + (datetime.getMonth() + 1)).slice(-2);
+    let year = datetime.getFullYear();
+
+    const currentDate = (month + "/" + date + "/" + year)
+
     this.scheduleRepository.findById(scheduleId).then(schedule => {
+      if(currentDate >= schedule.date){
+        res.status(400).json({ message: "O agendamento não pode mais ser cancelado" });
+      }
       this.scheduleRepository.deleteSchedule(scheduleId, req.user.id).then(() => {
         res.status(200).json({ message: "Agendamento Removido" });
       }).catch((err) => {

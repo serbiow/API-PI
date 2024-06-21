@@ -2,6 +2,17 @@ const token = localStorage.getItem('token');
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchSchedules();
+
+    // Fecha o modal de edição ao clicar no botão de fechar
+    document.getElementById('closeEditModal').addEventListener('click', () => {
+        document.getElementById('editScheduleModal').classList.add('hidden');
+    });
+
+    // Manipula a submissão do formulário de edição
+    document.getElementById('editScheduleForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        await saveEditedSchedule();
+    });
 });
 
 async function fetchSchedules() {
@@ -46,6 +57,13 @@ function displaySchedules(schedules) {
                         </svg>
                     </span>
                 </button>
+                <button class="update-button relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button" data-id="${schedule.id}">
+                    <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                        </svg>
+                    </span>
+                </button>
             </div>
         `;
 
@@ -55,6 +73,11 @@ function displaySchedules(schedules) {
     // Adicione o evento de clique aos botões de deletar
     document.querySelectorAll('.delete-button').forEach(button => {
         button.addEventListener('click', deleteSchedule);
+    });
+
+    // Adicione o evento de clique aos botões de update
+    document.querySelectorAll('.update-button').forEach(button => {
+        button.addEventListener('click', updateSchedule);
     });
 }
 
@@ -69,11 +92,66 @@ async function deleteSchedule(event) {
             },
         });
         if (!response.ok) {
-            throw new Error('Erro ao deletar agendamento');
+            throw new Error('Erro ao atualizar agendamento');
         }
         const result = await response.json();
         console.log(result.message);
         fetchSchedules(); // Atualiza a lista de agendamentos
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+}
+
+async function updateSchedule(event) {
+    const scheduleId = event.currentTarget.getAttribute('data-id');
+    try {
+        const response = await fetch(`http://localhost:3000/schedule/?id=${scheduleId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao buscar detalhes do agendamento');
+        }
+        const schedule = await response.json();
+
+        // Preenche os campos do formulário com os dados do agendamento
+        document.getElementById('editServiceName').value = schedule.serviceName;
+        document.getElementById('editDate').value = schedule.date;
+        document.getElementById('editTime').value = schedule.time;
+        document.getElementById('editScheduleId').value = schedule.id;
+
+        // Exibe o modal de edição
+        document.getElementById('editScheduleModal').classList.remove('hidden');
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+}
+
+async function saveEditedSchedule() {
+    const scheduleId = document.getElementById('editScheduleId').value;
+    const updatedSchedule = {
+        date: document.getElementById('editDate').value,
+        time: document.getElementById('editTime').value,
+    };
+    try {
+        const response = await fetch(`http://localhost:3000/schedule/update?id=${scheduleId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedSchedule),
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao salvar alterações no agendamento');
+        }
+        const result = await response.json();
+        console.log(result.message);
+        fetchSchedules(); // Atualiza a lista de agendamentos
+        document.getElementById('editScheduleModal').classList.add('hidden'); // Fecha o modal de edição
     } catch (error) {
         console.error('Erro:', error);
     }
