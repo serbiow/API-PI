@@ -1,5 +1,14 @@
 const token = localStorage.getItem('token');
 
+//Verificar se o usuário está logado
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!token) {
+    alert('Você precisa estar logado para acessar esta página');
+    window.location.href = './login.html';
+    return;
+  }
+});
+
 document.getElementById('formSecurity').addEventListener('submit', async (event) => {
   event.preventDefault();
 

@@ -21,6 +21,6 @@ talvez...
 
 FRONT-END
 1- Navegabilidade entre páginas (<a>) (REVISAR)
-2- Botão de Login/Perfil
+2- Botão de Login/Perfil (FEITO)
 3- Tela de cadastro de pergunta de segurança (FEITO, falta ajeitar as cores)
 4- Refazer a tela de perfil (FEITO)

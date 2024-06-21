@@ -62,8 +62,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
       const data2 = await response2.json();
 
       if (response2.ok && data2.hasSecurityQuestions) {
-        // Redirecionar para uma página protegida, se necessário
-        window.location.href = './profile.html';
+        window.location.href = './index.html';
       }
       else {
         if (confirm("Perguntas de seguranças não cadastradas. Deseja cadastrá-las?") == true) {
