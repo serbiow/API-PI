@@ -1,30 +1,30 @@
 <!doctype html>
 <html>
- 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
   <link href="./input.css" rel="stylesheet">
   <script src="node_modules/@material-tailwind/html@latest/scripts/ripple.js"></script>
- 
+
   <!-- from cdn -->
   <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
- 
+
   <!-- Font Awesome Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
     crossorigin="anonymous" />
   <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
- 
+
   <!-- script -->
   <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script>
- 
+
 </head>
- 
-<body class="flex-row">
-  <nav class="nav-header text-[#0D1419] flex list-none   h-24 transition-all">
+
+<body>
+  <nav class="nav-header text-[#0D1419] flex list-none  h-24 transition-all">
     <div class="mt-auto my-auto pl-5">
       <img class="w-44 flex relative" src="img/logotipo.png">
     </div>
@@ -44,146 +44,164 @@
       class="rounded-lg botao shadow-gray-900/10   w-36 text-center transition-all ml-auto mt-auto my-auto p-2 pr-5 pl-5 mr-5 ">
       Login</a>
   </nav>
- 
-  <section class="header-bg  flex pl-10 pr-10 justify-around ">
-    <div class="text-center mt-auto mb-auto">
-    <h2 class="text-amber-50 text-5xl">STUDIO TAILINE</h2>
-    <h2 class="text-amber-50 text-2xl">Realçando sua beleza, uma sobrancelha de cada vez, no Studio Tailine.
-    </h2>
-  </div>
-  <img class="estetica" src="img/estetica.png" >
+
+
+  <section class="text-2xl h-auto footer-color  text-black pt-48 py-48 justify-center text-center">
+    <h4 class="text-4xl text-gray-300">Catalogo de Serviços</h4>
+    <p class="text-gray-700 text-2xl mt-6">Conheca o Catalogo de Serviços do Studio.</p>
+
+
   </section>
   </header>
- 
-  <h5 class="section uppercase text-3xl justify-center font-medium align-middle text-center p-16">Serviços Oferecidos </h5>
- 
-  <section class="w-full h-fit pb-8  justify-center flex section flex-wrap gap-20 ">
- 
-   <div class="card-home uppercase rounded-lg p-10">
-    <div class="flex-row text-center w-fit ml-auto mr-auto gap-20">
-    <h2 class="text-2xl font-bold">SOBRANCELHAS</h2>
-    <br>
-    <p>FEMININO / MASCULINO</p>
-    <br>
-    <p>SIMPLES</p>
-    <br>
-    <p> com henna</p>
-    <br>
-    <p>Com coloração</p>
-    <br>
-   
-    <a href="servicos.html"> <button class="ml-auto mr-auto w-36 p-3 bg-none border-amber-100  saiba-mais  text-amber-50 border-solid border  rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button> </a>
+
+  <section class="w-full h-fit py-32 section flex-wrap justify-center gap-5">
+   <a href="schedule.html">
+    <div class="fundo-card-modelo-1 flex-row p-7 selected-card">
+      <div><p class="text-white uppercase font-medium">Design Personalizado</p>
+          <p class="text-dourado uppercase font-light">Simples</p>
+      </div>
+      <img src="img/img-card1.png" class="borda-dourada m-auto mt-9 w-64 h-64">
+      <div class="ml-auto text-sm text-center w-60 mt-10 pl-14  font-light text-white">
+          <p>HIGIENIZAÇÃO, MAPEAMENTO,
+              LIMPEZA DE FIOS NA PINÇA/CERA
+              E FINALIZAÇÃO</p>
+              <p class="font-medium text-xl">R$ 40,00.</p>
+              <p>com / sem buço</p>
+      </div><p class="text-center mr-auto w-28 font-light text-white relative bottom-10">
+      DURA<BR>
+          15            -            20 DIAS
+      </p>
   </div>
-  </div>
-  <div class="card-home uppercase rounded-lg p-10">
-    <div class="flex-row text-center w-fit ml-auto mr-auto gap-20">
-    <h2 class="text-2xl font-bold">BROW LAMINATION</h2>
-    <br>
-    <p>Técnica utilizada para</p>
-    <p>estilizar os fios, deixandoLES</p>
-    <p> volumosas e disfarçando </p>
- 
-    <p>possíveis falhas.</p>
-    <br>
-    <br>
- 
-    <p class="font-medium">Mais alinhadas ou mais selvagens, você escolhe!</p>
-   
-    <a href="servicos.html"> <button class="ml-auto mr-auto w-36 p-3 bg-none border-amber-100  saiba-mais  text-amber-50 border-solid border  rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button> </a>
-  </div>
-  </div>
-  <div class="card-home uppercase rounded-lg p-10">
-    <div class="flex-row text-center w-fit ml-auto mr-auto gap-20">
-    <h2 class="text-2xl font-bold">MICROPIGMENTAÇÃO</h2>
-    <br>
-    <h2 class="text-2xl font-medium">slim brows</h2>
-    <br>
-    <p>um resultado mais leve, </p>
-    <p>delicado e com fios precisos</p>
-    <p> e finos para um efeito mais</p>
-   
-    <p>suave.</p>
-    <br>
-    <p class="font-medium">Feito com dermógrafo e anestésico zero dor.</p>
-   
-    <a href="servicos.html"> <button class="ml-auto mr-auto w-36 p-3 bg-none border-amber-100  saiba-mais  text-amber-50 border-solid border  rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button> </a>
-  </div>
-  </div>
- 
- 
+</a>
+        
+<a href="schedule.html"> 
+          <div class="fundo-card-modelo-2 flex-row p-7">
+              <div><p class="text-black uppercase font-bold">Design Personalizado</p>
+                  <p class="text-brown-700 uppercase font-light">COM HENNA</p>
+              </div>
+              <img src="img/img-card1.png" class="borda-dourada-2 m-auto mt-9 w-64 h-64">
+              <div class="ml-auto text-sm text-center w-60 mt-10 pl-14  font-light text-white">
+                  <p>HIGIENIZAÇÃO, MAPEAMENTO,
+                      LIMPEZA DE FIOS NA PINÇA/CERA
+                      E FINALIZAÇÃO</p>
+                      <p class="font-medium text-xl">R$ 40,00.</p>
+                      <p>com / sem buço</p>
+              </div><p class="text-center mr-auto w-36 font-light text-white relative bottom-10">
+                HENNA DURA<BR>
+                  05 - 10 DIAS
+              </p>
+          </div>
+        </a>         
+        <a href="schedule.html"> 
+          <div class="fundo-card-modelo-1 flex-row p-7">
+            <div><p class="text-white uppercase font-medium">COM COLORAÇÃO</p>
+                <p class="text-dourado uppercase font-light">Simples</p>
+            </div>
+            <img src="img/img-card1.png" class="borda-dourada m-auto mt-9 w-64 h-64">
+            <div class="ml-auto text-sm text-center w-60 mt-8 pl-14  font-light text-white">
+                <p>HIGIENIZAÇÃO, MAPEAMENTO,
+                    LIMPEZA DE FIOS NA PINÇA/CERA
+                    E FINALIZAÇÃO</p>
+                    <p class="font-medium text-xl">R$ 40,00.</p>
+                    <p>com / sem buço</p>
+            </div><p class="text-center mr-auto w-28 font-light text-white relative bottom-10">
+            DURA<BR>
+              15 - 25 DIAS
+            </p>
+        </div>
+      </a>  
+
+
+
+
+    
   </section>
- 
-  <section class="w-full h-fit pb-28 justify-center flex section flex-wrap gap-20">
- 
-    <div class="card-home uppercase rounded-lg p-10">
-     <div class="flex-row text-center w-fit ml-auto mr-auto gap-20">
-     <h2 class="text-2xl font-bold">LASH LIFTING</h2>
-     <br>
-     <p>Com produtos específicos, o</p>
-     <p>procedimento levanta os </p>
-     <p>cilios naturais, criando uma</p>
-     <p>curvatura acentuada. Além do</p>
-     <p>outro benefício é que a</p>
-     <p>técnica pinta, hidrata e </p>
-     <p>reconstrói os cílios!</p>
-     <br>
-     
-     
-     <a href="servicos.html"> <button class="ml-auto mr-auto w-36 p-3 bg-none border-amber-100  saiba-mais  text-amber-50 border-solid border  rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button> </a>
-   </div>
-   </div>
-   <div class="card-home uppercase rounded-lg p-10">
-     <div class="flex-row text-center w-fit ml-auto mr-auto gap-20">
-     <h2 class="text-2xl font-bold">DERMAPLANING</h2>
-     <br>
-     <p>Esse procedimento é feito</p>
-     <p>com lâmina ou bisturi,</p>
-     <p> promovendo uma esfoliação</p>
-     <p>leve na pele. Ele remove</p>
-     <p>células mortas e pelos </p>
-     <p>finos, revelando uma pele</p>
-     <p>mais macia e suave.</p>
-     <br>
-     
-     <a href="servicos.html">  <button class="ml-auto mr-auto w-36 p-3 bg-none border-amber-100  saiba-mais  text-amber-50 border-solid border  rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button> </a> 
-   </div>
-   </div>
-   <div class="card-home uppercase rounded-lg p-10">
-     <div class="flex-row text-center w-fit ml-auto mr-auto gap-20">
-     <h2 class="text-2xl font-bold">Curso presencial</h2>
-     <br>
-     <br>
-     <p>Domine as duas técnicas que</p>
-     <p>estão bombando na estética e</p>
-     <p> se torne uma profissional de</p>
-     <p>sucesso!</p>
-     <br>
-     <br>
-     <br>
- 
-     
-     <button class="ml-auto mr-auto w-36 p-3 bg-none border-amber-100  saiba-mais  text-amber-50 border-solid border  rounded-lg font-bold text-sm  mt-6">SAIBA MAIS</button>
-   </div>
-   </div>
-   
- 
-   </section>
- 
-   <section class="flex justify-center tailine-fundo">
-   <div class="flex fundo-cor p-10">
-    <div class="flex-row">
-        <p class="text-5xl font-medium text-dourado mt-2">Tailine Oliveira</p>
-        <img src="img/tailine.png" class="img-tailine mt-10">
+
+  <section class="w-full h-fit py-32 section flex-wrap justify-center gap-10">
+
+    <a href="schedule.html">
+    <div class="fundo-card-modelo-3 flex-row p-7">
+      <p class="text-white uppercase font-medium h-fit w-fit text-center ml-auto me-auto">SLIM BROWS</p>
+      <img src="img/img-card1.png" class="borda-dourada m-auto mt-8 w-64 h-64">
+      <div class="ml-auto mr-auto text-sm mt-24 text-center w-64 uppercase font-light text-white">
+        <p>um resultado mais leve,
+          delicidado e com fios
+          precisos e ficnos para um
+          efeito mais suave,
+         </p>
+            <p class="font-medium text-xl mt-6">R$ 360,00.</p>
+      </div>
     </div>
-    <div class="text-black ml-12 mt-32 text-center"> 
-      <p class="font-semibold text-2xl">DESIGNER DE SOBRANCELHAS E<br>
-      MICROPIGMENTADORA DESDE 2016</p><br><br>
-    <p class="text-xl font-light">Estou no ramo da beleza há 8 anos,<br> com o objetivo de fazer você <br>encontrar a sua melhor versão, <br>promovendo seu bem estar por meio<br> de um atendimento personalizado.</p>
+  </a>
+  <a href="schedule.html">
+    <div class="fundo-card-modelo-4 flex-row p-7">
+      <p class="text-black uppercase font-bold h-fit w-fit text-center ml-auto me-auto">soft shadow</p>
+      <img src="img/img-card1.png" class="borda-dourada-2 m-auto mt-8 w-64 h-64">
+      <div class="ml-auto mr-auto text-sm mt-20 text-center w-72 uppercase font-light text-white">
+        <p>ESSA TÉCNICA PROMOVE UM RESULTADO MAIS
+          AMRCANTE, DELINEADO E INDICADO PARA
+          QUEM TEM GRANDES FALHAS OU GOSTA DE UMA SOBRANCELHa
+         A MAIS PREENCHIDA E SOMBREADA
+         </p>
+            <p class="font-medium text-xl mt-">R$ 400,00.</p>
     </div>
-  
- 
+  </a>
+  </section >
+
+
+  <section class="w-full h-fit py-32 section flex-wrap justify-center gap-10">
+    <a href="schedule.html"> 
+    <div class="fundo-card-modelo-5 flex-row p-7">
+      <div><p class="text-white uppercase font-medium">Brow Lamination</p>
+          
+      </div>
+      <img src="img/img-card1.png" class="borda-dourada m-auto mt-14 w-64 h-64">
+      <div class="ml-auto text-sm text-center w-64 mt-8 pl-10 relative left-5  font-light text-white uppercase">
+          <p>Técnica utilizada para estilizar os fios, deixando as sobrancelhas mais volumosas e disfarçando possíveis falhas. Mais alinhadas ou mais selvagens, você escolhe!</p>
+              <p class="font-medium text-xl">R$ 40,00.</p>
+              <p>com / sem buço</p>
+      </div><p class="text-center mr-auto w-36 font-light text-white relative bottom-24">
+        MANUNTENÇÃO 30/45 DIAS<BR>
+          R$ 80,00
+      </p>
+  </div>
+</a>
+  <a href="schedule.html">
+  <div class="fundo-card-modelo-6 flex-row p-7">
+    <div><p class="text-black uppercase font-medium">DERMAPLANING</p>
+        <p class="text-brown-500 uppercase font-light"></p>
+    </div>
+    <img src="img/img-card1.png" class="borda-dourada-2 m-auto mt-8 w-64 h-64">
+    <div class="ml-auto text-sm text-center w-72 mt-16 pl-12  font-light text-white relative left-5">
+        <p>PROCEDIMENTO FEITO COM UMA LÁMINA OU BISTURI, PROMOVENDO UMA ESFOLIAÇÃO LEVE NA PELE. ELE REMOVE CÉLULAR MORTAS E PELOS FINOS. REVELANDO UMA PELE MAIS MACIA E SUAVE.</p>
+            <p class="font-medium text-xl">R$ 40,00.</p>
+            <p>com / sem buço</p>
+    </div><p class="text-center mr-auto w-56 font-light text-black relative bottom-20">
+      MANUNTENÇÃO 30/45 DIAS<BR>
+        R$ 49,00.
+    </p>
+</div>
+</a>
+<a href="schedule.html">
+<div class="fundo-card-modelo-5 flex-row p-7">
+  <div><p class="text-white uppercase font-medium">LASH LIFTING</p>
+      <p class="text-dourado uppercase font-light">Simples</p>
+  </div>
+  <img src="img/img-card1.png" class="borda-dourada m-auto mt-10 w-64 h-64">
+  <div class="ml-auto text-sm text-center w-60 mt-10 pl-14  font-light text-white">
+      <p>HIGIENIZAÇÃO, MAPEAMENTO,
+          LIMPEZA DE FIOS NA PINÇA/CERA
+          E FINALIZAÇÃO</p>
+          <p class="font-medium text-xl">R$ 40,00.</p>
+          <p>com / sem buço</p>
+  </div><p class="text-center mr-auto w-28 font-light text-white relative bottom-10">
+  DURA<BR>
+      15            -            20 DIAS
+  </p>
+</div>
+</a>
   </section>
- 
+
   <footer class="relative w-full pt-11 footer-color text-amber-50">
     <div class="w-full px-8 mx-auto max-w-7xl">
       <div class="grid justify-between grid-cols-1 gap-4 md:grid-cols-2">
@@ -328,7 +346,12 @@
       </div>
     </div>
   </footer>
- 
 </body>
- 
+
+
+
+
 </html>
+
+
+    
