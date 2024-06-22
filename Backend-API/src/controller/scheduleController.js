@@ -15,12 +15,8 @@ class ScheduleController {
       const client = { clientName, clientPhone };
 
       var userTemp = { id: null };
-      console.log(userTemp.id)
-
-      console.log('before if')
 
       if (client.clientName != undefined && client.clientPhone != undefined) {
-        console.log('entrou')
         //criar usuario temporário
         await this.userRepository.createUserTemp(client);
 
@@ -28,14 +24,12 @@ class ScheduleController {
         userTemp = await this.userRepository.findUserByPhone(client.clientPhone);
       }
 
-      console.log('after if')
       if(userTemp.id == null){
         var clientId = req.user.id;
       }
       else{
         var clientId = userTemp.id;
       }
-      console.log(clientId)
 
       const schedule = new Schedule(serviceId, date, time, clientId);
 
