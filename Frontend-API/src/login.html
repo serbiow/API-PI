@@ -25,6 +25,50 @@
 
 <body>
   <main class="section">
+    <nav class="nav-header text-[#0D1419] flex items-center justify-between h-24 transition-all px-5">
+      <div>
+          <img class="w-32 md:w-44" src="img/logotipo.png" alt="Logotipo">
+      </div>
+      <ul id="menu" class="text-[#0D1419] font-semibold gap-9 flex">
+          <li><a href="cursos.html" class="hover:text-[#09172C]">Cursos</a></li>
+          <li><a href="index.html" class="hover:text-[#09172C]">Sobre</a></li>
+          <li><a href="schedule.html" class="hover:text-[#09172C]">Agendamentos</a></li>
+          <li><a href="servicos.html" class="hover:text-[#09172C]">Serviços</a></li>
+   
+      </ul>
+      <div class="flex items-center space-x-4">
+          <div class="hamburger" onclick="toggleMenu()">
+              <div class="line1"></div>
+              <div class="line2"></div>
+              <div class="line3"></div>
+          </div>
+          <a href="login.html" id="btn-login" class="rounded-lg botao shadow-gray-900/10 w-28 text-center transition-all p-2 pr-5 pl-5">
+              Login
+          </a>
+      </div>
+  </nav>
+  
+  <div id="mobile-menu">
+      <ul class="text-[#0D1419] font-semibold gap-9 flex flex-col items-center p-4">
+          <li><a href="cursos.html" class="hover:text-[#09172C]">Cursos</a></li>
+          <li><a href="index.html" class="hover:text-[#09172C]">Sobre</a></li>
+          <li><a href="schedule.html" class="hover:text-[#09172C]">Agendamentos</a></li>
+          <li><a href="servicos.html" class="hover:text-[#09172C]">Serviços</a></li>
+  
+      </ul>
+  </div>
+  
+  <script>
+      function toggleMenu() {
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (mobileMenu.style.maxHeight === '0px' || mobileMenu.style.maxHeight === '') {
+              mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+          } else {
+              mobileMenu.style.maxHeight = '0';
+          }
+          document.querySelector('.hamburger').classList.toggle('open');
+      }
+  </script>
     <section class=" section min-h-screen flex items-center justify-center">
       <div class="nav-header flex rounded-2xl shadow-lg min-h-96 min-w-fit">
         <div class="px-16 pt-10 py-10">

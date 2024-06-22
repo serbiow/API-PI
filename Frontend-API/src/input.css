@@ -77,3 +77,178 @@
   background-color: var(--cor3);
 
 }
+<<<<<<< Updated upstream
+=======
+
+.fundo-card-modelo-2 {
+    background-image: url("img/fundo_claro.png");
+    background-size: cover;
+    width: 560px;
+    height: 560px;
+}
+
+.fundo-card-modelo-3 {
+    background-image: url("img/fundo_escuro2.png");
+    background-size: cover;
+    width: 560px;
+    height: 560px;
+}
+
+.fundo-card-modelo-4 {
+    background-image: url("img/fundo_claro2.png");
+    background-size: cover;
+    width: 560px;
+    height: 560px;
+}
+
+.fundo-card-modelo-5 {
+    background-image: url("img/fundo_escuro3.png");
+    background-size: cover;
+    width: 560px;
+    height: 590px;
+}
+
+.fundo-card-modelo-6 {
+    background-image: url("img/fundo_claro3.png");
+    background-size: cover;
+    width: 560px;
+    height: 590px;
+}
+
+.text-dourado {
+    color: #E7C7A1;
+}
+
+.borda-dourada {
+    border-radius: 100%;
+    border-color: #E7C7A1;
+    padding: 12px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.borda-dourada-2 {
+    border-radius: 100%;
+    border-color: #3F3A37;
+    padding: 12px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.card-home {
+    background-color: var(--preto);
+    color: var(--cor1);
+    height: 431px;
+    width: 485px;
+}
+
+.fundo-cor {
+    background-image: url('img/duascores.png');
+    width: 1056px;
+    height: 550px;
+    background-size: cover;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: space-around;
+
+    border: #0D1419;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.tailine-fundo {
+    background-image: url('img/bg-tailine.png');
+    background-color: #0D1419;
+    background-size: cover;
+    height: 800px;
+
+}
+
+
+
+
+
+
+
+.bg-cor1 {
+    background-color: var(--cor1);
+}
+
+.bg-cor2 {
+    background-color: var(--cor2);
+}
+
+.bg-cor3 {
+    background-color: var(--cor3);
+}
+
+.bg-preto {
+    background-color: var(--preto);
+}
+
+.bg-marrom {
+    background-color: var(--marrom);
+}
+
+
+
+   /* Ultimas alterações */
+   .hamburger {
+    cursor: pointer;
+}
+.hamburger {
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #0D1419;
+    margin: 5px;
+    transition: 0.4s;
+}
+.open .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.open .line2 {
+    opacity: 0;
+}
+.open .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+#mobile-menu {
+    background-color: #EBDBC2; /* Set background color for dropdown */
+    transition: max-height 0.4s ease-in-out; /* Add transition for dropdown animation */
+    overflow: hidden;
+    max-height: 0;
+    display: none; /* Hidden by default */
+}
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Show hamburger on small screens */
+    }
+    #menu {
+        display: none; /* Hide normal menu on small screens */
+    }
+    #mobile-menu {
+        display: block; /* Show mobile menu container */
+    }
+}
+
+
+.img-tailine {
+    border-radius: 100%;
+    border-color: #0D1419;
+    border-width: 2px;
+
+}
+@media (max-width: 768px) {
+    .text-mobile-white {
+        color: white;
+    }
+    .font-mobile-size {
+        font-size: 1rem; /* Example smaller font size */
+    }
+}
+
+>>>>>>> Stashed changes
