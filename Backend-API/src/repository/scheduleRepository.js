@@ -78,11 +78,13 @@ class ScheduleRepository {
       return db
         .all(
           `
-          SELECT s.id, s.date, s.time, s.userId, s.serviceId, se.name AS serviceName, u.name AS userName, u.email FROM SCHEDULE AS s 
+          SELECT s.id, s.date, s.time, s.userId, s.serviceId, se.name AS serviceName, u.name AS userName, u.email, u.phone FROM SCHEDULE AS s 
           JOIN USER AS u ON u.id = s.userId
           JOIN SERVICES AS se ON se.id = s.serviceId
           WHERE (userId = '${userId}' AND status = "1")
           OR ((SELECT staff FROM USER WHERE id = "${userId}") = 1 AND status = "1")
+          ORDER BY
+          date DESC
           `)
         .then((res) => res).catch(err => { throw new Error("Nenhum agendameto disponível")});
     });

@@ -1,15 +1,43 @@
 import ScheduleRepository from "../repository/scheduleRepository.js";
+import UserRepository from "../repository/userRepository.js";
 import Schedule from "../models/schedule.js";
 
 class ScheduleController {
   constructor() {
     this.scheduleRepository = new ScheduleRepository();
+    this.userRepository = new UserRepository();
   }
 
   async createSchedule(req, res) {
     try {
-      const { serviceId, date, time } = req.body;
-      const schedule = new Schedule(serviceId, date, time, req.user.id);
+      const { serviceId, date, time, clientName, clientPhone } = req.body;
+
+      const client = { clientName, clientPhone };
+
+      var userTemp = { id: null };
+      console.log(userTemp.id)
+
+      console.log('before if')
+
+      if (client.clientName != undefined && client.clientPhone != undefined) {
+        console.log('entrou')
+        //criar usuario temporário
+        await this.userRepository.createUserTemp(client);
+
+        //pegar id do usuário cadastrado
+        userTemp = await this.userRepository.findUserByPhone(client.clientPhone);
+      }
+
+      console.log('after if')
+      if(userTemp.id == null){
+        var clientId = req.user.id;
+      }
+      else{
+        var clientId = userTemp.id;
+      }
+      console.log(clientId)
+
+      const schedule = new Schedule(serviceId, date, time, clientId);
 
       // verificar se é válido
       if (!schedule.serviceId || !schedule.date || !schedule.time || !schedule.userId) {
@@ -43,7 +71,7 @@ class ScheduleController {
 
     const currentDate = (month + "/" + date + "/" + year)
 
-    if(currentDate <= newSchedule.date){
+    if (currentDate <= newSchedule.date) {
       res.status(400).json({ message: "O agendamento não pode mais ser alterado" });
     }
 
@@ -92,7 +120,7 @@ class ScheduleController {
     const currentDate = (month + "/" + date + "/" + year)
 
     this.scheduleRepository.findById(scheduleId).then(schedule => {
-      if(currentDate >= schedule.date){
+      if (currentDate >= schedule.date) {
         res.status(400).json({ message: "O agendamento não pode mais ser cancelado" });
       }
       this.scheduleRepository.deleteSchedule(scheduleId, req.user.id).then(() => {

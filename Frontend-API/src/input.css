@@ -102,6 +102,10 @@
     background-color: var(--cor1);
 }
 
+.agendamento{
+    background-color: var(--cor1);
+}
+
 .borda-agend {
     border-bottom: #3F3A37;
     border-style: solid;

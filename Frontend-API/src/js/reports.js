@@ -20,8 +20,20 @@ document.getElementById('relatorio1').addEventListener('click', async (event) =>
 });
 
 document.getElementById('relatorio2').addEventListener('click', async (event) => {
+    event.preventDefault();
+    document.getElementById('dateModal').classList.remove('hidden');
+});
+
+document.getElementById('closeDateModal').addEventListener('click', () => {
+    document.getElementById('dateModal').classList.add('hidden');
+});
+
+document.getElementById('dateForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const date = document.getElementById('reportDate').value;
+    document.getElementById('dateModal').classList.add('hidden');
+
     try {
-        const date = prompt("Por favor, digite a data", "mm/dd/yyyy");
         const response = await fetch('http://localhost:3000/reports/day', {
             method: 'POST',
             headers: {
@@ -108,3 +120,7 @@ function showModal(title, content) {
     document.getElementById('modalContent').innerHTML = content;
     document.getElementById('reportModal').classList.remove('hidden');
 }
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('reportModal').classList.add('hidden');
+});

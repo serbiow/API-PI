@@ -11,31 +11,31 @@ const serviceSeeds = [
     //     "name": "Design Personalizado com Henna",
     //     "description": "desc",
     //     "price":  55,
-    //     "duration": 1
+    //     "duration": 2
     // },
     // {
     //     "name": "Design Personalizado com coloração",
     //     "description": "desc",
     //     "price":  60,
-    //     "duration": 1
+    //     "duration": 2
     // },
     // {
     //     "name": "Brow Lamination",
     //     "description": "desc",
     //     "price":  145,
-    //     "duration": 1
+    //     "duration": 2
     // },
     // {
     //     "name": "Micropigmentação Slim Brows",
     //     "description": "desc",
     //     "price":  360,
-    //     "duration": 1
+    //     "duration": 3
     // },
     // {
     //     "name": "Micropigmentação Soft Shadow",
     //     "description": "desc",
     //     "price":  400,
-    //     "duration": 1
+    //     "duration": 3
     // },
     // {
     //     "name": "Lash Lifting",

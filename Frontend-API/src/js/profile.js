@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('relatorio1').style.display = 'block';
                 document.getElementById('relatorio2').style.display = 'block';
                 document.getElementById('relatorio3').style.display = 'block';
+
+                // Mostrar as colunas Cliente e Telefone na tabela
+                document.querySelectorAll('.client-info').forEach(element => {
+                    element.style.display = 'table-cell';
+                });
+
+                // Mostrar os dados do Cliente e Telefone nas linhas da tabela
+                document.querySelectorAll('.userInfo').forEach(element => {
+                    element.style.display = 'table-cell';
+                });
             }
 
         } else {

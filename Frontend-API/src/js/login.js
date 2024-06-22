@@ -69,7 +69,12 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
           window.location.href = './secQuestions.html';
         }
         else {
-          window.location.href = './index.html';
+          if (confirm("Tem certeza? Não será possível recuperar sua conta caso perca a senha!") == true) {
+            window.location.href = './secQuestions.html';
+          }
+          else{
+            window.location.href = './index.html';
+          }
         }
       }
 

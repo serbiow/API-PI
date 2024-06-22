@@ -15,7 +15,7 @@ OBRIGATÓRIOS
 
 talvez...
 4- CRUD schedules pelo ADM
-    4.1- Create
+    4.1- Create (FEITO)
     4.2- Update (FEITO)
     4.3- Delete (FEITO)
 

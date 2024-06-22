@@ -37,7 +37,7 @@ document.getElementById('formSecurity').addEventListener('submit', async (event)
 
     const data = await response.json();
     alert('Perguntas cadastradas com sucesso!')
-    window.location.href = './login.html';
+    window.location.href = 'login.html';
 
   } catch (error) {
     console.error('Erro:', error);

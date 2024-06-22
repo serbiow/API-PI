@@ -17,6 +17,21 @@ class UserRepository {
       });
   }
 
+  async createUserTemp(client) {
+    return openDb()
+      .then((db) => {
+        return db.run(
+          `
+            INSERT INTO USER(name, phone)
+            VALUES("${client.clientName}", "${client.clientPhone}")
+            `
+        );
+      })
+      .catch((err) => {
+        throw new Error("Erro na criação de usuário temporário");
+      });
+  }
+
   async updateUser(userId, newData) {
     openDb()
       .then((db) => {
@@ -81,7 +96,21 @@ class UserRepository {
       });
   }
 
-  //TODO: findUserByPhone
+  async findUserByPhone(userPhone) {
+    return openDb()
+      .then((db) => {
+        return db
+          .get(
+            `
+              SELECT * FROM USER WHERE phone = "${userPhone}"
+              `
+          )
+          .then((res) => res);
+      })
+      .catch((err) => {
+        throw new Error("Usuário não encontrado");
+      });
+  }
 
   async deleteUser(userId) {
     return openDb()
